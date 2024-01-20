@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import FeriadosView  from '@/views/FeriadosView.vue';
+import FeriadosListaView from '@/views/FeriadosListaView.vue';
+import FeriadosFormularioView  from '@/views/FeriadosFormularioView.vue';
 
 const routes = [
   {
@@ -11,8 +13,24 @@ const routes = [
   {
     path: '/feriados',
     name: 'Feriados',
-    component: FeriadosView
+    component: FeriadosView,
+    children: [
+      {
+        path: '',
+        component: FeriadosListaView
+      },
+      {
+        path: 'inserir',
+        component: FeriadosFormularioView,
+      },
+      {
+        path: 'alterar/:id',
+        component: FeriadosFormularioView,
+        props: true
+      },
+    ]
   },
+
   {
     path: '/about',
     name: 'about',
@@ -27,5 +45,7 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+console.log(router.getRoutes());
 
 export default router

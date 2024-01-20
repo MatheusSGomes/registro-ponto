@@ -1,18 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
-import ColaboradoresView  from '@/views/Colaboradores/ColaboradoresView.vue';
-import ColaboradoresListaView from '@/views/Colaboradores/ColaboradoresListaView.vue';
-import ColaboradoresFormularioView  from '@/views/Colaboradores/ColaboradoresFormularioView.vue';
-
-import UsuariosView  from '@/views/Usuarios/UsuariosView.vue';
-import UsuariosListaView from '@/views/Usuarios/UsuariosListaView.vue';
-import UsuariosFormularioView  from '@/views/Usuarios/UsuariosFormularioView.vue';
-
-import FeriadosView  from '@/views/Feriados/FeriadosView.vue';
-import FeriadosListaView from '@/views/Feriados/FeriadosListaView.vue';
-import FeriadosFormularioView  from '@/views/Feriados/FeriadosFormularioView.vue';
-
 const routes = [
   {
     path: '/',
@@ -22,22 +10,22 @@ const routes = [
   {
     path: '/colaboradores',
     name: 'colaboradores',
-    component: ColaboradoresView,
+    component: () => import(/* webpackChunkName: "ColaboradoresView" */ '@/views/Colaboradores/ColaboradoresView.vue'),
     children: [
       {
         path: '',
         name: 'colaboradores.lista',
-        component: ColaboradoresListaView
+        component: () => import(/* webpackChunkName: "ColaboradoresListaView" */ '@/views/Colaboradores/ColaboradoresListaView.vue')
       },
       {
         path: 'inserir',
         name: 'colaboradores.inserir',
-        component: ColaboradoresFormularioView,
+        component: () => import(/* webpackChunkName: "ColaboradoresFormularioView" */ '@/views/Colaboradores/ColaboradoresFormularioView.vue'),
       },
       {
         path: 'alterar/:id',
         name: 'colaboradores.alterar',
-        component: ColaboradoresFormularioView,
+        component: () => import(/* webpackChunkName: "ColaboradoresFormularioView" */ '@/views/Colaboradores/ColaboradoresFormularioView.vue'),
         props: true
       },
     ]
@@ -45,22 +33,22 @@ const routes = [
   {
     path: '/usuarios',
     name: 'usuarios',
-    component: UsuariosView,
+    component: () => import(/* webpackChunkName: "UsuariosView" */ '@/views/Usuarios/UsuariosView.vue'),
     children: [
       {
         path: '',
         name: 'usuarios.lista',
-        component: UsuariosListaView
+        component: () => import(/* webpackChunkName: "UsuariosListaView" */ '@/views/Usuarios/UsuariosListaView.vue'),
       },
       {
         path: 'inserir',
         name: 'usuarios.inserir',
-        component: UsuariosFormularioView,
+        component: () => import(/* webpackChunkName: "UsuariosListaView" */ '@/views/Usuarios/UsuariosFormularioView.vue'),
       },
       {
         path: 'alterar/:id',
         name: 'usuarios.alterar',
-        component: UsuariosFormularioView,
+        component: () => import(/* webpackChunkName: "UsuariosListaView" */ '@/views/Usuarios/UsuariosFormularioView.vue'),
         props: true
       },
     ]
@@ -68,35 +56,26 @@ const routes = [
   {
     path: '/feriados',
     name: 'feriados',
-    component: FeriadosView,
+    component: () => import(/* webpackChunkName: "FeriadosView" */ '@/views/Feriados/FeriadosView.vue'),
     children: [
       {
         path: '',
         name: 'feriados.lista',
-        component: FeriadosListaView
+        component: () => import(/* webpackChunkName: "FeriadosListaView" */ '@/views/Feriados/FeriadosListaView.vue'),
       },
       {
         path: 'inserir',
         name: 'feriados.inserir',
-        component: FeriadosFormularioView,
+        component: () => import(/* webpackChunkName: "FeriadosFormularioView" */ '@/views/Feriados/FeriadosFormularioView.vue'),
       },
       {
         path: 'alterar/:id',
         name: 'feriados.alterar',
-        component: FeriadosFormularioView,
+        component: () => import(/* webpackChunkName: "FeriadosFormularioView" */ '@/views/Feriados/FeriadosFormularioView.vue'),
         props: true
       },
     ]
   },
-
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
 ]
 
 const router = createRouter({

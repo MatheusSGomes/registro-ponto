@@ -5,8 +5,7 @@
         v-if="modalTitle || modalContent"
         @click="isOpen = true"
         class=""
-        type="button"
-      >
+        type="button">
         <slot></slot>
       </button>
 

@@ -9,33 +9,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="border px-4 py-2">25/12/2023</td>
-          <td class="border px-4 py-2">Natal</td>
+        <tr v-for="feriado in feriados" :key="feriado.id">
+          <td class="border px-4 py-2">{{ feriado.data }}</td>
+          <td class="border px-4 py-2">{{ feriado.descricao }}</td>
           <td class="border px-4 py-2">
             <div class="flex items-center justify-center">
-              <router-link :to="{ name: 'feriados.alterar', params: { id: 1 } }">
+              <router-link :to="{ name: 'feriados.alterar', params: { id: feriado.id } }">
                 <img alt="" class="w-12 block" src="@/assets/icons/edit.svg" />
               </router-link>
               <ModalExcluir
                 modalTitle="Excluir feriado"
-                modalContent="Tem certeza que deseja excluir o feriado de 25/12/2023?">
-                <img alt="" class="w-6" src="@/assets/icons/delete.svg">
-              </ModalExcluir>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">25/12/2023</td>
-          <td class="border px-4 py-2">Páscoa</td>
-          <td class="border px-4 py-2">
-            <div class="flex items-center justify-center">
-              <router-link :to="{ name: 'feriados.alterar', params: { id: 2 } }">
-                <img alt="" class="w-12 block" src="@/assets/icons/edit.svg" />
-              </router-link>
-              <ModalExcluir
-                modalTitle="Excluir feriado"
-                modalContent="Tem certeza que deseja excluir o feriado de 25/12/2023?">
+                :modalContent="'Tem certeza que deseja excluir o feriado de ' + feriado.data + '?'">
                 <img alt="" class="w-6" src="@/assets/icons/delete.svg">
               </ModalExcluir>
             </div>
@@ -47,6 +31,7 @@
 </template>
 
 <script>
+import FeriadosDataService from '@/services/FeriadosDataService'
 import ModalExcluir from '../ModalExcluir.vue'
 
 export default {
@@ -55,7 +40,21 @@ export default {
     ModalExcluir
   },
   data() {
-    return {}
+    return {
+      feriados: [],
+    }
+  },
+  methods: {
+    getAllFeriados() {
+      return FeriadosDataService.getAll()
+        .then(response => {
+          this.feriados = response.data;
+          console.log(this.feriados);
+        });
+    }
+  },
+  mounted() {
+    this.getAllFeriados();
   }
 }
 </script>

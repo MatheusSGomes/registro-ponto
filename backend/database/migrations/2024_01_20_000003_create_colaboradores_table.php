@@ -13,7 +13,20 @@ return new class extends Migration
     {
         Schema::create('colaboradores', function (Blueprint $table) {
             $table->id();
+            $table->string('cpf');
+            $table->boolean('ativo');
+            $table->string('nome');
+            $table->date('data_nascimento');
+            $table->date('data_admissao');
+            $table->string('email');
+            $table->string('cargo_id');
+            $table->string('funcao_id');
+            $table->date('data_recisao');
+            $table->string('usuario');
+
             $table->timestamps();
+
+            $table->unique(['cpf']);
         });
     }
 

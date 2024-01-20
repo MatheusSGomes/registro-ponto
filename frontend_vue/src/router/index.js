@@ -12,19 +12,22 @@ const routes = [
   },
   {
     path: '/feriados',
-    name: 'Feriados',
+    name: 'feriados',
     component: FeriadosView,
     children: [
       {
         path: '',
+        name: 'feriados.lista',
         component: FeriadosListaView
       },
       {
         path: 'inserir',
+        name: 'feriados.inserir',
         component: FeriadosFormularioView,
       },
       {
         path: 'alterar/:id',
+        name: 'feriados.alterar',
         component: FeriadosFormularioView,
         props: true
       },

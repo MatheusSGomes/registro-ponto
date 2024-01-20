@@ -12,12 +12,15 @@
         <td class="border px-4 py-2">25/12/2023</td>
         <td class="border px-4 py-2">Natal</td>
         <td class="border px-4 py-2">
-          <div class="flex gap-2">
-            <img alt="Vue logo" class="w-7 cursor-pointer" src="@/assets/icons/edit.svg">
+          <div class="flex items-center justify-center">
+            <router-link :to="{ name: 'feriados.alterar', params: { id: 1 } }">
+              <img alt="" class="w-12 block" src="@/assets/icons/edit.svg" />
+            </router-link>
+
             <ModalExcluir
               modalTitle="Excluir feriado"
               modalContent="Tem certeza que deseja excluir o feriado de 25/12/2023?">
-              <img alt="Vue logo" class="w-6" src="@/assets/icons/delete.svg">
+              <img alt="" class="w-6" src="@/assets/icons/delete.svg">
             </ModalExcluir>
           </div>
         </td>

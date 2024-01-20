@@ -1,5 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+
+import UsuariosView  from '@/views/Usuarios/UsuariosView.vue';
+import UsuariosListaView from '@/views/Usuarios/UsuariosListaView.vue';
+import UsuariosFormularioView  from '@/views/Usuarios/UsuariosFormularioView.vue';
+
 import FeriadosView  from '@/views/Feriados/FeriadosView.vue';
 import FeriadosListaView from '@/views/Feriados/FeriadosListaView.vue';
 import FeriadosFormularioView  from '@/views/Feriados/FeriadosFormularioView.vue';
@@ -9,6 +14,29 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/usuarios',
+    name: 'usuarios',
+    component: UsuariosView,
+    children: [
+      {
+        path: '',
+        name: 'usuarios.lista',
+        component: UsuariosListaView
+      },
+      {
+        path: 'inserir',
+        name: 'usuarios.inserir',
+        component: UsuariosFormularioView,
+      },
+      {
+        path: 'alterar/:id',
+        name: 'usuarios.alterar',
+        component: UsuariosFormularioView,
+        props: true
+      },
+    ]
   },
   {
     path: '/feriados',

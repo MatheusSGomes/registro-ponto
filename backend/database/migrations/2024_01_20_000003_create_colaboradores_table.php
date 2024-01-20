@@ -19,8 +19,8 @@ return new class extends Migration
             $table->date('data_nascimento');
             $table->date('data_admissao');
             $table->string('email');
-            $table->string('cargo_id');
-            $table->string('funcao_id');
+            $table->integer('cargo_id');
+            $table->integer('funcao_id');
             $table->date('data_recisao');
             $table->string('usuario');
 

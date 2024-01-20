@@ -10,13 +10,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="border px-4 py-2">2</td>
-          <td class="border px-4 py-2">matheus_gomes</td>
-          <td class="border px-4 py-2">math.s.gomes@gmail.com</td>
+        <tr v-for="usuario in usuarios" :key="usuario.id">
+          <td class="border px-4 py-2">{{ usuario.id }}</td>
+          <td class="border px-4 py-2">{{ usuario.nome }}</td>
+          <td class="border px-4 py-2">{{ usuario.email }}</td>
           <td class="border px-4 py-2">
             <div class="flex items-center justify-center">
-              <router-link :to="{ name: 'usuarios.alterar', params: { id: 2 } }">
+              <router-link :to="{ name: 'usuarios.alterar', params: { id: usuario.id } }">
                 <img alt="" class="w-12 block" src="@/assets/icons/edit.svg" />
               </router-link>
               <ModalExcluir
@@ -34,6 +34,7 @@
 
 <script>
 import ModalExcluir from '../ModalExcluir.vue'
+import UsuariosDataService from '@/services/UsuariosDataService';
 
 export default {
   name: 'UsuariosTable',
@@ -41,7 +42,21 @@ export default {
     ModalExcluir
   },
   data() {
-    return {}
+    return {
+      usuarios: [],
+    }
+  },
+  methods: {
+    recuperarUsuarios() {
+      UsuariosDataService
+        .getAll()
+        .then((response) => {
+          this.usuarios = response.data;
+        })
+    }
+  },
+  mounted() {
+    this.recuperarUsuarios();
   }
 }
 </script>

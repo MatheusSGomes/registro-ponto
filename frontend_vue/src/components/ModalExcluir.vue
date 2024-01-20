@@ -62,7 +62,7 @@
 export default {
   name: 'ModalComponent',
   props: ['src', 'modalTitle', 'modalContent'],
-  emits: ['btnExcluir'],
+  // emits: ['btnExcluir'],
   data() {
     return {
       isOpen: false,

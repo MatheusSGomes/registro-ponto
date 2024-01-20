@@ -1,5 +1,5 @@
 <template>
-  <h1 v-if="id" class="text-4xl font-extrabold">Alterar Usuarios ({{ id }})</h1>
+  <h1 v-if="id" class="text-4xl font-extrabold">Alterar Usuarios</h1>
   <h1 v-else class="text-4xl font-extrabold">Inserir Usuarios</h1>
 
   <div class="grid grid-flow-col gap-3 auto-cols-max">

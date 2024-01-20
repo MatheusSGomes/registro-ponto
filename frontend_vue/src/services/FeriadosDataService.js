@@ -7,7 +7,7 @@ class FeriadosDataService {
   }
 
   create(data) {
-    console.log(data)
+    return http.post("/feriados", data);
   }
 
   get(id) {
@@ -15,7 +15,7 @@ class FeriadosDataService {
   }
 
   update(id, data) {
-    console.log(id, data)
+    return http.put(`/feriados/${id}`, data);
   }
 
   delete(id) {

@@ -43,14 +43,13 @@
             <p class="mb-4 text-sm">
               {{ modalContent }}
             </p>
+            <button @click="$emit('btnExcluir')" class="px-6 py-2 text-blue-100 bg-blue-600 rounded">
+              Sim
+            </button>
             <button
               @click="isOpen = false"
-              class="px-6 py-2 text-blue-800 border border-blue-600 rounded"
-            >
-              Cancel
-            </button>
-            <button class="px-6 py-2 ml-2 text-blue-100 bg-blue-600 rounded">
-              Save
+              class="px-6 py-2 ml-2 text-blue-800 border border-blue-600 rounded">
+              Não
             </button>
           </div>
         </div>
@@ -63,6 +62,7 @@
 export default {
   name: 'ModalComponent',
   props: ['src', 'modalTitle', 'modalContent'],
+  emits: ['btnExcluir'],
   data() {
     return {
       isOpen: false,

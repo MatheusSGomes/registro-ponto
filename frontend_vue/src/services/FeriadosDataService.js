@@ -19,7 +19,7 @@ class FeriadosDataService {
   }
 
   delete(id) {
-    console.log(id)
+    return http.delete(`/feriados/${id}`);
   }
 
 }

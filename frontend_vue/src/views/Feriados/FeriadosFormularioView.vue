@@ -1,5 +1,5 @@
 <template>
-  <h1 v-if="id" class="text-4xl font-extrabold">Alterar Feriado ({{ id }})</h1>
+  <h1 v-if="id" class="text-4xl font-extrabold">Alterar Feriado</h1>
   <h1 v-else class="text-4xl font-extrabold">Inserir Feriado</h1>
 
   <form action="" @submit="submitFeriado">
@@ -62,19 +62,16 @@ export default {
       }
     },
     salvarFeriado(data) {
-      console.log(data);
       FeriadosDataService
         .create(data)
-        .then(response => {
-          console.log(response);
+        .then(() => {
           this.$router.push({ path: '/feriados' });
         })
     },
     atualizarFeriado(data) {
       FeriadosDataService
         .update(this.id, data)
-        .then(response => {
-          console.log(response);
+        .then(() => {
           this.$router.push({ path: '/feriados' });
         })
     }

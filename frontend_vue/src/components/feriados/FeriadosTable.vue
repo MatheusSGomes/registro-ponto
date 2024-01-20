@@ -18,8 +18,9 @@
                 <img alt="" class="w-12 block" src="@/assets/icons/edit.svg" />
               </router-link>
               <ModalExcluir
-                modalTitle="Excluir feriado"
-                :modalContent="'Tem certeza que deseja excluir o feriado de ' + feriado.data + '?'">
+                @btn-excluir="excluirFeriado(feriado.id)"
+                :modalContent="'Tem certeza que deseja excluir o feriado de ' + feriado.data + '?'"
+                modalTitle="Excluir feriado">
                 <img alt="" class="w-6" src="@/assets/icons/delete.svg">
               </ModalExcluir>
             </div>
@@ -50,6 +51,13 @@ export default {
         .then(response => {
           this.feriados = response.data;
         });
+    },
+    excluirFeriado(feriado_id) {
+      FeriadosDataService
+        .delete(feriado_id)
+        .then(() => {
+          this.getAllFeriados();
+        })
     }
   },
   mounted() {

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Funcao;
+use App\Models\TipoUsuario;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,15 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('funcoes', function (Blueprint $table) {
+        Schema::create('tipo_usuarios', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
         });
 
-        Funcao::insert([
-            [ "titulo" => "Funcao 1" ],
-            [ "titulo" => "Funcao 2" ],
-            [ "titulo" => "Funcao 3" ],
+        TipoUsuario::insert([
+            [ "titulo" => "Administrador" ],
+            [ "titulo" => "Colaborador" ],
         ]);
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('funcoes');
+        Schema::dropIfExists('tipo_usuarios');
     }
 };

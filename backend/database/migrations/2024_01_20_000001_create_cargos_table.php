@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Cargo;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,8 +15,13 @@ return new class extends Migration
         Schema::create('cargos', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->timestamps();
         });
+
+        Cargo::insert([
+            [ "titulo" => "Cargo 1" ],
+            [ "titulo" => "Cargo 2" ],
+            [ "titulo" => "Cargo 3" ],
+        ]);
     }
 
     /**

@@ -1,6 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+import ColaboradoresView  from '@/views/Colaboradores/ColaboradoresView.vue';
+import ColaboradoresListaView from '@/views/Colaboradores/ColaboradoresListaView.vue';
+import ColaboradoresFormularioView  from '@/views/Colaboradores/ColaboradoresFormularioView.vue';
+
 import UsuariosView  from '@/views/Usuarios/UsuariosView.vue';
 import UsuariosListaView from '@/views/Usuarios/UsuariosListaView.vue';
 import UsuariosFormularioView  from '@/views/Usuarios/UsuariosFormularioView.vue';
@@ -14,6 +18,29 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/colaboradores',
+    name: 'colaboradores',
+    component: ColaboradoresView,
+    children: [
+      {
+        path: '',
+        name: 'colaboradores.lista',
+        component: ColaboradoresListaView
+      },
+      {
+        path: 'inserir',
+        name: 'colaboradores.inserir',
+        component: ColaboradoresFormularioView,
+      },
+      {
+        path: 'alterar/:id',
+        name: 'colaboradores.alterar',
+        component: ColaboradoresFormularioView,
+        props: true
+      },
+    ]
   },
   {
     path: '/usuarios',

@@ -16,4 +16,8 @@ services:
       - "4200:80"
 
   db:
-    
+    build:
+      context: .
+      dockerfile: Dockerfile-postgres
+    ports:
+      - "5432:5432"

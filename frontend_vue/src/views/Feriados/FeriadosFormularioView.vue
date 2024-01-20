@@ -7,14 +7,14 @@
       <label class="block text-gray-700 text-sm font-bold mb-2" for="data">
         Data
       </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="data" type="date" placeholder="Data">
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" :value="feriado.data" id="data" type="date" placeholder="Data">
     </div>
 
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="descricao">
         Descrição
       </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="descricao" type="text" placeholder="Ex: Proclamação da República">
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="descricao" type="text" placeholder="Ex: Proclamação da República" :value="feriado.descricao">
     </div>
   </div>
 
@@ -25,9 +25,32 @@
 </template>
 
 <script>
+import FeriadosDataService from '@/services/FeriadosDataService';
 export default {
   name: 'FeriadosFormularioView',
-  props: ['id']
+  props: ['id'],
+  data() {
+    return {
+      feriado: {
+        data: null,
+        descricao: null
+      }
+    }
+  },
+  methods: {
+    recuperaFeriado() {
+      if (this.id) {
+        FeriadosDataService
+          .get(this.id)
+          .then((response) => {
+            this.feriado = response.data;
+          })
+      }
+    }
+  },
+  mounted() {
+    this.recuperaFeriado();
+  }
 }
 </script>
 

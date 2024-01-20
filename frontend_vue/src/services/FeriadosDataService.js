@@ -11,7 +11,7 @@ class FeriadosDataService {
   }
 
   get(id) {
-    console.log(id)
+    return http.get(`/feriados/${id}`);
   }
 
   update(id, data) {

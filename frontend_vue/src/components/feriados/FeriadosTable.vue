@@ -49,7 +49,6 @@ export default {
       return FeriadosDataService.getAll()
         .then(response => {
           this.feriados = response.data;
-          console.log(this.feriados);
         });
     }
   },

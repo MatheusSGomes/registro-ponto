@@ -26,7 +26,7 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->unique(['cpf']);
+            $table->unique(['cpf', 'usuario']);
         });
     }
 

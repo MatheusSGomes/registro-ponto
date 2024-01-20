@@ -10,7 +10,7 @@ class UsuariosDataService {
   }
 
   get(id) {
-    console.log(id)
+    return http.get(`/usuarios/${id}`);
   }
 
   update(id, data) {

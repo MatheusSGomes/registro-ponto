@@ -1,32 +1,49 @@
 <template>
-  <table class="table-auto">
-    <thead>
-      <tr>
-        <th class="px-4 py-2">Data</th>
-        <th class="px-4 py-2">Descrição</th>
-        <th class="px-4 py-2">Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="border px-4 py-2">25/12/2023</td>
-        <td class="border px-4 py-2">Natal</td>
-        <td class="border px-4 py-2">
-          <div class="flex items-center justify-center">
-            <router-link :to="{ name: 'feriados.alterar', params: { id: 1 } }">
-              <img alt="" class="w-12 block" src="@/assets/icons/edit.svg" />
-            </router-link>
-
-            <ModalExcluir
-              modalTitle="Excluir feriado"
-              modalContent="Tem certeza que deseja excluir o feriado de 25/12/2023?">
-              <img alt="" class="w-6" src="@/assets/icons/delete.svg">
-            </ModalExcluir>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="">
+    <table class="table-auto">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Data</th>
+          <th class="px-4 py-2">Descrição</th>
+          <th class="px-4 py-2">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="border px-4 py-2">25/12/2023</td>
+          <td class="border px-4 py-2">Natal</td>
+          <td class="border px-4 py-2">
+            <div class="flex items-center justify-center">
+              <router-link :to="{ name: 'feriados.alterar', params: { id: 1 } }">
+                <img alt="" class="w-12 block" src="@/assets/icons/edit.svg" />
+              </router-link>
+              <ModalExcluir
+                modalTitle="Excluir feriado"
+                modalContent="Tem certeza que deseja excluir o feriado de 25/12/2023?">
+                <img alt="" class="w-6" src="@/assets/icons/delete.svg">
+              </ModalExcluir>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">25/12/2023</td>
+          <td class="border px-4 py-2">Páscoa</td>
+          <td class="border px-4 py-2">
+            <div class="flex items-center justify-center">
+              <router-link :to="{ name: 'feriados.alterar', params: { id: 2 } }">
+                <img alt="" class="w-12 block" src="@/assets/icons/edit.svg" />
+              </router-link>
+              <ModalExcluir
+                modalTitle="Excluir feriado"
+                modalContent="Tem certeza que deseja excluir o feriado de 25/12/2023?">
+                <img alt="" class="w-6" src="@/assets/icons/delete.svg">
+              </ModalExcluir>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>

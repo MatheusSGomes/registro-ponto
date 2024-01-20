@@ -49,6 +49,4 @@ const router = createRouter({
   routes
 })
 
-console.log(router.getRoutes());
-
 export default router

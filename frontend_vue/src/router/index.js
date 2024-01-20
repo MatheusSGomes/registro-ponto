@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import FeriadosView  from '@/views/FeriadosView.vue';
-import FeriadosListaView from '@/views/FeriadosListaView.vue';
-import FeriadosFormularioView  from '@/views/FeriadosFormularioView.vue';
+import FeriadosView  from '@/views/Feriados/FeriadosView.vue';
+import FeriadosListaView from '@/views/Feriados/FeriadosListaView.vue';
+import FeriadosFormularioView  from '@/views/Feriados/FeriadosFormularioView.vue';
 
 const routes = [
   {

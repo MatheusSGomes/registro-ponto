@@ -6,7 +6,7 @@ class UsuariosDataService {
   }
 
   create(data) {
-    console.log( data)
+    return http.post('/usuarios', data);
   }
 
   get(id) {
@@ -14,7 +14,7 @@ class UsuariosDataService {
   }
 
   update(id, data) {
-    console.log(id, data)
+    return http.put(`/usuarios/${id}`, data);
   }
 
   delete(id) {

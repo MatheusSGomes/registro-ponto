@@ -16,7 +16,7 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         return Usuario::create([
-            "nome" => $request->nome,
+            "usuario" => $request->usuario,
             "email" => $request->email,
             "tipousuario_id" => $request->tipousuario_id,
             "password" => Hash::make($request->password),

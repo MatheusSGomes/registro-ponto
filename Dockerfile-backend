@@ -1,9 +1,22 @@
-FROM php:8.3-apache
+FROM php:8.3-fpm
+
+RUN apt-get update && \
+    apt-get install -y libpq-dev nginx
+
+RUN docker-php-ext-install pdo pdo_pgsql
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/html
 
-COPY backend /var/www/html
+COPY . /var/www/html
+
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+RUN composer install --optimize-autoloader --no-dev
+
+COPY backend/nginx.conf /etc/nginx/sites-available/default
 
 EXPOSE 80
 
-CMD ["apache2-foreground"]
+CMD ["bash", "-c", "service php8.3-fpm start && nginx -g 'daemon off;'"]

@@ -14,3 +14,6 @@ services:
       dockerfile: Dockerfile-frontend
     ports:
       - "4200:80"
+
+  db:
+    

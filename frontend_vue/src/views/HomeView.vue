@@ -1,9 +1,9 @@
 <template>
   <div class="">
-    <h1 class="text-4xl font-extrabold">Registro de Ponto</h1>
+    <h1 class="text-4xl font-extrabold my-10">Registro de Ponto</h1>
 
-      <h1 class="text-4xl font-extrabold my-5">{{ data_atual }}</h1>
-      <h1 class="text-2xl font-extrabold">{{ hora_atual }}</h1>
+      <h1 class="text-3xl font-extrabold mb-3">{{ data_atual }}</h1>
+      <h1 class="text-2xl font-extrabold mb-10">{{ hora_atual }}</h1>
 
       <div class="">
         <label class="block text-gray-700 text-sm font-bold my-2" for="cpf">Digite sua matricula: </label>

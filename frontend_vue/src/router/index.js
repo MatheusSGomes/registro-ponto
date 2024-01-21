@@ -6,16 +6,19 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    meta: { needsAuth: false },
   },
   {
     path: '/login',
     name: 'login',
-    component: LoginView
+    component: LoginView,
+    meta: { needsAuth: false }
   },
   {
     path: '/colaboradores',
     name: 'colaboradores',
+    meta: { needsAuth: true },
     component: () => import(/* webpackChunkName: "ColaboradoresView" */ '@/views/Colaboradores/ColaboradoresView.vue'),
     children: [
       {
@@ -39,6 +42,7 @@ const routes = [
   {
     path: '/usuarios',
     name: 'usuarios',
+    meta: { needsAuth: true },
     component: () => import(/* webpackChunkName: "UsuariosView" */ '@/views/Usuarios/UsuariosView.vue'),
     children: [
       {
@@ -62,6 +66,7 @@ const routes = [
   {
     path: '/feriados',
     name: 'feriados',
+    meta: { needsAuth: true },
     component: () => import(/* webpackChunkName: "FeriadosView" */ '@/views/Feriados/FeriadosView.vue'),
     children: [
       {
@@ -90,9 +95,11 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  if (to.meta.needsAuth) {
+    const user = localStorage.getItem('acess_token');
+    if (!user) next('/login');
+  }
   next();
-  // explicitly return false to cancel the navigation
-  // return false
 })
 
 export default router

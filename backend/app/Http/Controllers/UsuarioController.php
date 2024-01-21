@@ -19,7 +19,7 @@ class UsuarioController extends Controller
             "usuario" => $request->usuario,
             "email" => $request->email,
             "tipousuario_id" => $request->tipousuario_id,
-            "password" => Hash::make($request->password),
+            "password" => $request->password,
         ]);
     }
 

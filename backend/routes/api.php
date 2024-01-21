@@ -2,14 +2,16 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CargoController,
+use App\Http\Controllers\{AutenticacaoController,
+    CargoController,
     ColaboradorController,
     ControlePontoController,
     FeriadoController,
     FuncaoController,
     HorarioController,
-    PontoController,
     UsuarioController};
+
+Route::post('login', [AutenticacaoController::class, 'login']);
 
 Route::apiResource('colaboradores', ColaboradorController::class);
 Route::apiResource('usuarios', UsuarioController::class);

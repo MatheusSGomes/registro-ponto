@@ -9,13 +9,13 @@
         <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
           Usuário
         </label>
-        <input v-model="usuario" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="usuario" type="text" placeholder="usuario">
+        <input v-model="usuario" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="usuario" type="text" placeholder="usuario">
       </div>
       <div class="mb-6">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="senha">
           Senha
         </label>
-        <input v-model="senha" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="senha" type="password" placeholder="*********">
+        <input v-model="senha" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="senha" type="password" placeholder="*********">
       </div>
       <div class="flex items-center justify-between">
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import LoginDataService from '@/services/LoginDataService';
+
 export default {
   name: 'LoginView',
   data() {
@@ -39,7 +41,17 @@ export default {
   },
   methods: {
     submitLogin() {
-      console.log(this.usuario, this.senha);
+      const data = {
+        usuario: this.usuario,
+        password: this.senha
+      }
+
+      LoginDataService
+        .login(data)
+        .then(response => {
+          localStorage.setItem('acess_token', response.data.token);
+          this.$router.push({ path: '/colaboradores' });
+        });
     }
   }
 }

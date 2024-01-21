@@ -166,7 +166,7 @@ export default {
     },
     preencheHorarios() {
       HorariosDataService
-        .getByColaboradorId(18)
+        .getByColaboradorId(this.colaborador_id)
         .then(response => {
           this.horarios = response.data;
         })

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Colaborador;
+use App\Models\Horario;
 use App\Services\ColaboradorService;
 use Illuminate\Http\Request;
 use Mockery\Exception;
@@ -42,7 +43,7 @@ class ColaboradorController extends Controller
      */
     public function update(Request $request, int $colaborador_id)
     {
-        return Colaborador::find($colaborador_id)->update($request->all());
+        return $this->colaboradorService->updateColaborador($request, $colaborador_id);
     }
 
     /**

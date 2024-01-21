@@ -165,11 +165,13 @@ export default {
       this.$emit('updateHorarios', this.horarios);
     },
     preencheHorarios() {
-      HorariosDataService
-        .getByColaboradorId(this.colaborador_id)
-        .then(response => {
-          this.horarios = response.data;
-        })
+      if (this.colaborador_id) {
+        HorariosDataService
+          .getByColaboradorId(this.colaborador_id)
+          .then(response => {
+            this.horarios = response.data;
+          })
+      }
     }
   },
   mounted() {

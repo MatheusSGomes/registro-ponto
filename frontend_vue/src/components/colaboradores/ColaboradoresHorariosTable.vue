@@ -114,8 +114,11 @@
 </template>
 
 <script>
+import HorariosDataService from '@/services/HorariosDataService';
+
 export default {
   name: 'ColaboradoresHorarioTableComponent',
+  props: ['colaborador_id'],
   data() {
     return {
       horarios: {
@@ -160,8 +163,18 @@ export default {
     changeTable(e) {
       e.preventDefault();
       this.$emit('updateHorarios', this.horarios);
+    },
+    preencheHorarios() {
+      HorariosDataService
+        .getByColaboradorId(18)
+        .then(response => {
+          this.horarios = response.data;
+        })
     }
   },
+  mounted() {
+    this.preencheHorarios();
+  }
 }
 </script>
 

@@ -77,7 +77,7 @@
       </div>
     </div>
 
-    <ColaboradoresHorariosTable @update-horarios="atualizaHorarios" />
+    <ColaboradoresHorariosTable :colaborador_id="id" @update-horarios="atualizaHorarios" />
 
     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-5 rounded">
       Salvar
@@ -116,7 +116,7 @@ export default {
         data_recisao: null,
         usuario: null,
       },
-      horarios: {}
+      horarios: {},
     }
   },
   methods: {
@@ -144,6 +144,7 @@ export default {
           .get(this.id)
           .then(response => {
             this.colaborador = response.data;
+            this.horarios = response.data.horarios;
           });
       }
     },

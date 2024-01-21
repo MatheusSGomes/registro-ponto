@@ -13,13 +13,7 @@ return new class extends Migration
     {
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
-            $table->integer('colaborador_id');
-
-            //$table->enum('dia_semana', ['segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo']);
-            //$table->string('entrada_periodo1')->nullable();
-            //$table->string('saida_periodo1')->nullable();
-            //$table->string('entrada_periodo2')->nullable();
-            //$table->string('saida_periodo2')->nullable();
+            $table->integer('colaborador_id')->unique();
 
             $table->string('seg_p1_entrada')->nullable();
             $table->string('seg_p1_saida')->nullable();

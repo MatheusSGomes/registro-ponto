@@ -24,29 +24,18 @@ class ColaboradorService
             "usuario" => $usuario,
         ]);
 
-        $this->insertHorarios($request->horarios, $colaborador);
+        if ($request->horarios) {
+            Horario::create(['colaborador_id' => $colaborador->id, ...$request->horarios]);
+        }
 
         return $colaborador;
     }
 
-    public function insertHorarios($horarios, $colaborador): void
-    {
-        if ($horarios) {
-            $collection = collect($horarios)->map(function ($item) use($colaborador) {
-                $item['colaborador_id'] = $colaborador->id;
-                return $item;
-            })->toArray();
-
-            Horario::insert($collection);
-        }
-    }
-
     public function createUsuarioName($usuario)
     {
-        $increment = 1;
         $usuarioLowerCase = strtolower($usuario);
         $underlineUsuario = str_replace(' ', '_', $usuarioLowerCase);
-        $colaborador = Colaborador::all()->last()->id;
+        $colaborador = Colaborador::all()->last()?->id;
 
         return $underlineUsuario . $colaborador + 1;
     }

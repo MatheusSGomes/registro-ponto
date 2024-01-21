@@ -6,6 +6,8 @@ use App\Models\ControlePonto;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
+date_default_timezone_set('America/Sao_Paulo');
+
 class ControlePontoController extends Controller
 {
     public function getRegistrosPonto(int $colaborador_id)

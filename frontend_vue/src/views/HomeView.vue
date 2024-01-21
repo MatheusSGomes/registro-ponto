@@ -35,7 +35,7 @@
       <div>
         <p class="text-red-500 my-10">MAPA</p>
       </div>
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <button @click="registrarPonto(colaborador.id)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Registrar
       </button>
     </div>
@@ -79,6 +79,18 @@ export default {
         .getByColaboradorId(colaborador_id)
         .then(response => {
           this.relogio_ponto = response.data;
+        });
+    },
+    registrarPonto(colaborador_id) {
+      const data = {
+        colaborador_id: colaborador_id,
+        localizacao: null
+      }
+
+      ControlePontoDataService
+        .registrarPonto(data)
+        .then(response => {
+          this.relogio_ponto.push(response.data)
         });
     }
   },

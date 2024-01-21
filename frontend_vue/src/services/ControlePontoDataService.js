@@ -5,6 +5,9 @@ class ControlePontoDataService {
     return http.get(`/ponto/${id}`);
   }
 
+  registrarPonto(data) {
+    return http.post(`/ponto`, data);
+  }
 }
 
 export default new ControlePontoDataService();

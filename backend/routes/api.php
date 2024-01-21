@@ -21,6 +21,7 @@ Route::apiResource('tipousuario', FuncaoController::class);
 
 Route::get('horarios-colaborador/{colaborador_id}', [HorarioController::class, 'getHorariosColaborador']);
 
+Route::get('ponto/{colaborador_id}', [ControlePontoController::class, 'getRegistrosPonto']);
 Route::post('ponto', [ControlePontoController::class, 'registrarPonto']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

@@ -22,7 +22,7 @@
               <ModalExcluir
                 @btn-excluir="excluirUsuario(usuario.id)"
                 modalTitle="Excluir usuario"
-                modalContent="Tem certeza que deseja excluir o usuario matheus_gomes?">
+                :modalContent="'Tem certeza que deseja excluir o usuario ' + usuario.usuario + '?'">
                 <img alt="" class="w-6" src="@/assets/icons/delete.svg">
               </ModalExcluir>
             </div>

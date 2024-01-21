@@ -21,4 +21,5 @@ class Colaborador extends Model
         'data_recisao',
         'usuario',
     ];
+    protected $hidden = ['created_at', 'updated_at'];
 }

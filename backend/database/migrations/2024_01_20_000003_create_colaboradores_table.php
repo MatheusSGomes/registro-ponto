@@ -13,20 +13,18 @@ return new class extends Migration
     {
         Schema::create('colaboradores', function (Blueprint $table) {
             $table->id();
-            $table->string('cpf');
+            $table->string('cpf')->unique();
             $table->boolean('ativo');
             $table->string('nome');
             $table->date('data_nascimento');
             $table->date('data_admissao');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->integer('cargo_id');
             $table->integer('funcao_id');
             $table->date('data_recisao');
-            $table->string('usuario');
+            $table->string('usuario')->unique();
 
             $table->timestamps();
-
-            $table->unique(['cpf', 'usuario']);
         });
     }
 

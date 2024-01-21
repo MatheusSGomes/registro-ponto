@@ -47,8 +47,9 @@
         </label>
         <select required v-model="colaborador.cargo_id" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-white focus:outline-none focus:shadow-outline"  id="tipo-usuario">
             <option value="null" disabled selected>Selecione</option>
-            <option value="1">Administrador</option>
-            <option value="2">Colaborador</option>
+            <option v-for="cargo in cargos" :key="cargo.id" :value="cargo.id">
+              {{ cargo.titulo }}
+            </option>
           </select>
       </div>
       <div class="mb-4">
@@ -57,8 +58,9 @@
         </label>
         <select required v-model="colaborador.funcao_id" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-white focus:outline-none focus:shadow-outline"  id="tipo-usuario">
             <option value="null" disabled selected>Selecione</option>
-            <option value="1">Administrador</option>
-            <option value="2">Colaborador</option>
+            <option v-for="funcao in funcoes" :key="funcao.id" :value="funcao.id">
+              {{ funcao.titulo }}
+            </option>
           </select>
       </div>
       <div class="mb-4">
@@ -85,12 +87,16 @@
 
 <script>
 import ColaboradoresDataService from '@/services/ColaboradoresDataService';
+import CargosDataService from '@/services/CargosDataService';
+import FuncoesDataService from '@/services/FuncoesDataService';
 
 export default {
   name: 'ColaboradoresFormularioView',
   props: ['id'],
   data() {
     return {
+      cargos: [],
+      funcoes: [],
       colaborador: {
         id: null,
         cpf: null,
@@ -103,10 +109,25 @@ export default {
         funcao_id: null,
         data_recisao: null,
         usuario: null,
-      }
+      },
     }
   },
   methods: {
+    preencheCargos() {
+      CargosDataService
+        .getAll()
+        .then(response => {
+          this.cargos = response.data;
+        });
+    },
+    preencheFuncoes() {
+      FuncoesDataService
+        .getAll()
+        .then(response => {
+          this.funcoes = response.data;
+        });
+
+    },
     recuperarColaborador() {
       if (this.id) {
         ColaboradoresDataService
@@ -154,6 +175,8 @@ export default {
   },
   mounted() {
     this.recuperarColaborador();
+    this.preencheCargos();
+    this.preencheFuncoes();
   }
 }
 </script>

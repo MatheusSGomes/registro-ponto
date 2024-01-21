@@ -14,10 +14,11 @@
         <label class="block text-gray-700 text-sm font-bold mb-2" for="tipo-usuario">
           Tipo de usuário*
         </label>
-        <select required v-model="usuario.tipousuario_id" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  id="tipo-usuario">
+        <select required v-model="usuario.tipousuario_id" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-white focus:outline-none focus:shadow-outline"  id="tipo-usuario">
           <option value="null" disabled selected>Selecione</option>
-          <option value="1">Administrador</option>
-          <option value="2">Colaborador</option>
+          <option v-for="tipousuario in tipousuarios" :key="tipousuario.id" :value="tipousuario.id">
+            {{ tipousuario.titulo }}
+          </option>
         </select>
       </div>
       <div class="mb-4">
@@ -49,12 +50,14 @@
 </template>
 
 <script>
+import TipoUsuarioDataService from '@/services/TipoUsuarioDataService'
 import UsuariosDataService from '@/services/UsuariosDataService'
 export default {
   name: 'UsuariosFormularioView',
   props: ['id'],
   data() {
     return {
+      tipousuarios: [],
       usuario: {
         id: null,
         usuario: null,
@@ -65,6 +68,13 @@ export default {
     }
   },
   methods: {
+    preencheTipoUsuarios() {
+      TipoUsuarioDataService
+        .getAll()
+        .then(response => {
+          this.tipousuarios = response.data;
+        });
+    },
     recuperarUsuarios() {
       if (this.id) {
         UsuariosDataService
@@ -107,6 +117,7 @@ export default {
   },
   mounted() {
     this.recuperarUsuarios();
+    this.preencheTipoUsuarios();
   }
 }
 </script>

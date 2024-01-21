@@ -14,6 +14,7 @@ Route::apiResource('feriados', FeriadoController::class);
 
 Route::apiResource('cargos', CargoController::class);
 Route::apiResource('funcoes', FuncaoController::class);
+Route::apiResource('tipousuario', FuncaoController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

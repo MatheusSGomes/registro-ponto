@@ -76,47 +76,8 @@
         <input disabled v-model="colaborador.usuario" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="usuario" type="text" />
       </div>
     </div>
-    <p class="text-red-500 my-10">TABELA DE HORÁRIOS</p>
 
-    <table class="table-auto">
-      <thead>
-        <tr>
-          <th class="px-4 py-2"></th>
-          <th class="px-4 py-2">Segunda-feira</th>
-          <th class="px-4 py-2">Terça-feira</th>
-          <th class="px-4 py-2">Quarta-feira</th>
-          <th class="px-4 py-2">Quinta-feira</th>
-          <th class="px-4 py-2">Sexta-feira</th>
-          <th class="px-4 py-2">Sábado</th>
-          <th class="px-4 py-2">Domingo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th class="px-4 py-2">Entrada</th>
-
-          <td class="border px-4 py-2">08:00</td>
-          <td class="border px-4 py-2">08:00</td>
-          <td class="border px-4 py-2">08:00</td>
-          <td class="border px-4 py-2">08:00</td>
-          <td class="border px-4 py-2">08:00</td>
-          <td class="border px-4 py-2">08:00</td>
-          <td class="border px-4 py-2">08:00</td>
-        </tr>
-        <tr>
-          <th class="px-4 py-2">Saída</th>
-
-          <td class="border px-4 py-2">12:00</td>
-          <td class="border px-4 py-2">12:00</td>
-          <td class="border px-4 py-2">12:00</td>
-          <td class="border px-4 py-2">12:00</td>
-          <td class="border px-4 py-2">12:00</td>
-          <td class="border px-4 py-2">12:00</td>
-          <td class="border px-4 py-2">12:00</td>
-        </tr>
-      </tbody>
-    </table>
-
+    <ColaboradoresHorariosTable @update-horarios="atualizaHorarios" />
 
     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-5 rounded">
       Salvar
@@ -130,10 +91,14 @@
 import ColaboradoresDataService from '@/services/ColaboradoresDataService';
 import CargosDataService from '@/services/CargosDataService';
 import FuncoesDataService from '@/services/FuncoesDataService';
+import ColaboradoresHorariosTable from '@/components/colaboradores/ColaboradoresHorariosTable.vue';
 
 export default {
   name: 'ColaboradoresFormularioView',
   props: ['id'],
+  components: {
+    ColaboradoresHorariosTable
+  },
   data() {
     return {
       cargos: [],
@@ -151,9 +116,13 @@ export default {
         data_recisao: null,
         usuario: null,
       },
+      horarios: {}
     }
   },
   methods: {
+    atualizaHorarios(horarios) {
+      this.horarios = horarios;
+    },
     preencheCargos() {
       CargosDataService
         .getAll()
@@ -190,7 +159,8 @@ export default {
         email: this.colaborador.email,
         cargo_id: this.colaborador.cargo_id,
         funcao_id: this.colaborador.funcao_id,
-        data_recisao: this.colaborador.data_recisao
+        data_recisao: this.colaborador.data_recisao,
+        horarios: this.horarios,
       }
 
       if (this.id) {

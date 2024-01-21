@@ -14,11 +14,47 @@ return new class extends Migration
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
             $table->integer('colaborador_id');
-            $table->enum('dia_semana', ['segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo']);
-            $table->string('entrada_periodo1')->nullable();
-            $table->string('saida_periodo1')->nullable();
-            $table->string('entrada_periodo2')->nullable();
-            $table->string('saida_periodo2')->nullable();
+
+            //$table->enum('dia_semana', ['segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo']);
+            //$table->string('entrada_periodo1')->nullable();
+            //$table->string('saida_periodo1')->nullable();
+            //$table->string('entrada_periodo2')->nullable();
+            //$table->string('saida_periodo2')->nullable();
+
+            $table->string('seg_p1_entrada')->nullable();
+            $table->string('seg_p1_saida')->nullable();
+            $table->string('seg_p2_entrada')->nullable();
+            $table->string('seg_p2_saida')->nullable();
+
+            $table->string('ter_p1_entrada')->nullable();
+            $table->string('ter_p1_saida')->nullable();
+            $table->string('ter_p2_entrada')->nullable();
+            $table->string('ter_p2_saida')->nullable();
+
+            $table->string('qua_p1_entrada')->nullable();
+            $table->string('qua_p1_saida')->nullable();
+            $table->string('qua_p2_entrada')->nullable();
+            $table->string('qua_p2_saida')->nullable();
+
+            $table->string('qui_p1_entrada')->nullable();
+            $table->string('qui_p1_saida')->nullable();
+            $table->string('qui_p2_entrada')->nullable();
+            $table->string('qui_p2_saida')->nullable();
+
+            $table->string('sex_p1_entrada')->nullable();
+            $table->string('sex_p1_saida')->nullable();
+            $table->string('sex_p2_entrada')->nullable();
+            $table->string('sex_p2_saida')->nullable();
+
+            $table->string('sab_p1_entrada')->nullable();
+            $table->string('sab_p1_saida')->nullable();
+            $table->string('sab_p2_entrada')->nullable();
+            $table->string('sab_p2_saida')->nullable();
+
+            $table->string('dom_p1_entrada')->nullable();
+            $table->string('dom_p1_saida')->nullable();
+            $table->string('dom_p2_entrada')->nullable();
+            $table->string('dom_p2_saida')->nullable();
         });
     }
 

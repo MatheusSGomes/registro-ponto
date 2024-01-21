@@ -20,6 +20,7 @@
                 <img alt="" class="w-12 block" src="@/assets/icons/edit.svg" />
               </router-link>
               <ModalExcluir
+                @btn-excluir="excluirColaborador(colaborador.id)"
                 modalTitle="Excluir colaborador"
                 :modalContent="'Tem certeza que deseja excluir o colaborador ' + colaborador.nome + ',' + colaborador.id + '?'">
                 <img alt="" class="w-6" src="@/assets/icons/delete.svg">
@@ -52,6 +53,13 @@ export default {
         .getAll()
         .then(response => {
           this.colaboradores = response.data;
+        })
+    },
+    excluirColaborador(colaborador_id) {
+      ColaboradoresDataService
+        .delete(colaborador_id)
+        .then(() => {
+          this.recuperarColaboradores();
         })
     }
   },

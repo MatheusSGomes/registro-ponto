@@ -1,7 +1,6 @@
 import http from "@/http-common";
 
 class FeriadosDataService {
-
   getAll() {
     return http.get("/feriados");
   }
@@ -21,7 +20,6 @@ class FeriadosDataService {
   delete(id) {
     return http.delete(`/feriados/${id}`);
   }
-
 }
 
 export default new FeriadosDataService();

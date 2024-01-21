@@ -18,7 +18,7 @@ class UsuariosDataService {
   }
 
   delete(id) {
-    console.log(id)
+    return http.delete(`/usuarios/${id}`);
   }
 }
 

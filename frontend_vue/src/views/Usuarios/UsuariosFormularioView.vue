@@ -15,7 +15,7 @@
           Tipo de usuário*
         </label>
         <select required v-model="usuario.tipousuario_id" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  id="tipo-usuario">
-          <option value="" disabled selected>Selecione</option>
+          <option value="null" disabled selected>Selecione</option>
           <option value="1">Administrador</option>
           <option value="2">Colaborador</option>
         </select>
@@ -24,7 +24,7 @@
         <label class="block text-gray-700 text-sm font-bold mb-2" for="tipo-usuario">
           E-mail*
         </label>
-        <input required v-model="usuario.email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="usuario" type="text" placeholder="Ex: matheus@gmail.com">
+        <input required v-model="usuario.email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="usuario" type="email" placeholder="Ex: matheus@gmail.com">
       </div>
       <div class="flex gap-3">
         <div class="mb-4">
@@ -85,9 +85,9 @@ export default {
       }
 
       if (this.id) {
-        this.salvarUsuario(data);
-      } else {
         this.atualizarUsuario(data);
+      } else {
+        this.salvarUsuario(data);
       }
     },
     salvarUsuario(data) {

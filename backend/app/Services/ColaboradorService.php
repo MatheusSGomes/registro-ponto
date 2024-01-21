@@ -29,14 +29,16 @@ class ColaboradorService
         return $colaborador;
     }
 
-    public function insertHorarios($horarios, $colaborador)
+    public function insertHorarios($horarios, $colaborador): void
     {
-        $collection = collect($horarios)->map(function ($item) use($colaborador) {
-            $item['colaborador_id'] = $colaborador->id;
-            return $item;
-        })->toArray();
+        if ($horarios) {
+            $collection = collect($horarios)->map(function ($item) use($colaborador) {
+                $item['colaborador_id'] = $colaborador->id;
+                return $item;
+            })->toArray();
 
-        Horario::insert($collection);
+            Horario::insert($collection);
+        }
     }
 
     public function createUsuarioName($usuario)

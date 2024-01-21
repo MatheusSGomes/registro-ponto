@@ -77,7 +77,48 @@
       </div>
     </div>
     <p class="text-red-500 my-10">TABELA DE HORÁRIOS</p>
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+
+    <table class="table-auto">
+      <thead>
+        <tr>
+          <th class="px-4 py-2"></th>
+          <th class="px-4 py-2">Segunda-feira</th>
+          <th class="px-4 py-2">Terça-feira</th>
+          <th class="px-4 py-2">Quarta-feira</th>
+          <th class="px-4 py-2">Quinta-feira</th>
+          <th class="px-4 py-2">Sexta-feira</th>
+          <th class="px-4 py-2">Sábado</th>
+          <th class="px-4 py-2">Domingo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="px-4 py-2">Entrada</th>
+
+          <td class="border px-4 py-2">08:00</td>
+          <td class="border px-4 py-2">08:00</td>
+          <td class="border px-4 py-2">08:00</td>
+          <td class="border px-4 py-2">08:00</td>
+          <td class="border px-4 py-2">08:00</td>
+          <td class="border px-4 py-2">08:00</td>
+          <td class="border px-4 py-2">08:00</td>
+        </tr>
+        <tr>
+          <th class="px-4 py-2">Saída</th>
+
+          <td class="border px-4 py-2">12:00</td>
+          <td class="border px-4 py-2">12:00</td>
+          <td class="border px-4 py-2">12:00</td>
+          <td class="border px-4 py-2">12:00</td>
+          <td class="border px-4 py-2">12:00</td>
+          <td class="border px-4 py-2">12:00</td>
+          <td class="border px-4 py-2">12:00</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-5 rounded">
       Salvar
     </button>
   </form>

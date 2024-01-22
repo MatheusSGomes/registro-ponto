@@ -2,19 +2,22 @@
   <div class="">
     <h1 class="text-4xl font-extrabold my-10">Registro de Ponto</h1>
 
-      <h1 class="text-3xl font-extrabold mb-3">{{ data_atual }}</h1>
-      <h1 class="text-2xl font-extrabold mb-10">{{ hora_atual }}</h1>
+    <h1 class="text-3xl font-extrabold mb-3">{{ data_atual }}</h1>
+    <h1 class="text-2xl font-extrabold mb-10">{{ hora_atual }}</h1>
 
-      <div class="">
-        <label class="block text-gray-700 text-sm font-bold my-2" for="cpf">Digite sua matricula: </label>
-        <div class="flex gap-3">
-          <input v-model="colaborador.matricula" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="matricula" type="text" />
-          <button @click="buscaColaborador" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Confirmar</button>
-        </div>
+    <MapComponent @atualiza-localizacao="recebeLocalizacao" />
+    <p class="mt-2">Latitude: {{ localizacao.latitude }}, Longitude: {{ localizacao.longitude }}</p>
+
+    <div class="my-10">
+      <label class="block text-gray-700 text-sm font-bold my-2" for="cpf">Para registrar o ponto digite sua matricula: </label>
+      <div class="flex gap-3">
+        <input v-model="colaborador.matricula" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="matricula" type="text" />
+        <button @click="buscaColaborador" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Buscar Colaborador</button>
       </div>
+    </div>
 
     <div class="registrador" v-if="showRegistrador">
-      <div class="flex justify-between my-10">
+      <div class="flex gap-5 my-10">
         <p><strong>Colaborador: </strong>{{ colaborador.nome }}</p>
         <p><strong>Matricula: </strong>{{ colaborador.id }}</p>
       </div>
@@ -32,10 +35,8 @@
           </tbody>
         </table>
       </div>
-      <div>
-        <p class="text-red-500 my-10">MAPA</p>
-      </div>
-      <button @click="registrarPonto(colaborador.id)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+
+      <button @click="registrarPonto(colaborador.id)" class="my-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Registrar
       </button>
     </div>
@@ -45,10 +46,13 @@
 <script>
 import ColaboradoresDataService from '@/services/ColaboradoresDataService';
 import ControlePontoDataService from '@/services/ControlePontoDataService';
+import MapComponent from '@/components/MapComponent'
 
 export default {
   name: 'HomeView',
-  components: { },
+  components: {
+    MapComponent
+  },
   data() {
     return {
       showRegistrador: false,
@@ -58,7 +62,11 @@ export default {
         nome: null,
         matricula: null,
       },
-      relogio_ponto: []
+      relogio_ponto: [],
+      localizacao: {
+        latitude: null,
+        longitude: null,
+      },
     }
   },
   methods: {
@@ -84,7 +92,7 @@ export default {
     registrarPonto(colaborador_id) {
       const data = {
         colaborador_id: colaborador_id,
-        localizacao: null
+        localizacao: this.localizacao
       }
 
       ControlePontoDataService
@@ -92,6 +100,9 @@ export default {
         .then(response => {
           this.relogio_ponto.push(response.data)
         });
+    },
+    recebeLocalizacao(localizacao) {
+      this.localizacao = localizacao;
     }
   },
   mounted() {

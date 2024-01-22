@@ -38,6 +38,9 @@ Na etapa da entrevista deverá ser apresentado a aplicação em funcionamento.
 
 __(Escreva aqui as instruções para que possamos corrigir sua prova, bem como qualquer outra observação sobre a prova que achar pertinente compartilhar)__
 
+---
+# Minhas observações
+
 ## Detalhamento funcionalidades
 
 - No módulo usuário consegui fazer toda a implementação com todas as regras tanto para adicionar, atualizar, lista e apagar usuário. Também consegui implementar a modal de exclusão onde outros módulos do sistema também a usam para excluir registros.

@@ -50,8 +50,10 @@
 </template>
 
 <script>
-import TipoUsuarioDataService from '@/services/TipoUsuarioDataService'
-import UsuariosDataService from '@/services/UsuariosDataService'
+import TipoUsuarioDataService from '@/services/TipoUsuarioDataService';
+import UsuariosDataService from '@/services/UsuariosDataService';
+import { toast } from 'vue3-toastify';
+
 export default {
   name: 'UsuariosFormularioView',
   props: ['id'],
@@ -73,6 +75,9 @@ export default {
         .getAll()
         .then(response => {
           this.tipousuarios = response.data;
+        })
+        .catch((error) => {
+          toast(error.message, { });
         });
     },
     recuperarUsuarios() {
@@ -82,6 +87,9 @@ export default {
           .then((response) => {
             this.usuario = response.data;
           })
+          .catch((error) => {
+            toast(error.message, { });
+          });
       }
     },
     submitForm(e) {
@@ -106,6 +114,9 @@ export default {
         .then(() => {
           this.$router.push({ path: '/usuarios' });
         })
+        .catch((error) => {
+          toast(error.message, { });
+        });
     },
     atualizarUsuario(data) {
       UsuariosDataService
@@ -113,6 +124,9 @@ export default {
         .then(() => {
           this.$router.push({ path: '/usuarios' });
         })
+        .catch((error) => {
+          toast(error.message, { });
+        });
     },
   },
   mounted() {

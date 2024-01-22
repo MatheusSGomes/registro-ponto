@@ -30,6 +30,7 @@
 
 <script>
 import LoginDataService from '@/services/LoginDataService';
+import { toast } from 'vue3-toastify';
 
 export default {
   name: 'LoginView',
@@ -51,6 +52,8 @@ export default {
         .then(response => {
           localStorage.setItem('acess_token', response.data.token);
           this.$router.push({ path: '/colaboradores' });
+        }).catch((error) => {
+          toast(error.message, { });
         });
     }
   }

@@ -115,6 +115,7 @@
 
 <script>
 import HorariosDataService from '@/services/HorariosDataService';
+import { toast } from 'vue3-toastify';
 
 export default {
   name: 'ColaboradoresHorarioTableComponent',
@@ -171,6 +172,9 @@ export default {
           .then(response => {
             this.horarios = response.data;
           })
+          .catch((error) => {
+            toast(error.message, { });
+          });
       }
     }
   },

@@ -26,6 +26,8 @@
 
 <script>
 import FeriadosDataService from '@/services/FeriadosDataService';
+import { toast } from 'vue3-toastify';
+
 export default {
   name: 'FeriadosFormularioView',
   props: ['id'],
@@ -45,6 +47,9 @@ export default {
           .then((response) => {
             this.feriado = response.data;
           })
+          .catch((error) => {
+            toast(error.message, { });
+          });
       }
     },
     submitFeriado(e) {
@@ -67,6 +72,9 @@ export default {
         .then(() => {
           this.$router.push({ path: '/feriados' });
         })
+        .catch((error) => {
+          toast(error.message, { });
+        });
     },
     atualizarFeriado(data) {
       FeriadosDataService
@@ -74,6 +82,9 @@ export default {
         .then(() => {
           this.$router.push({ path: '/feriados' });
         })
+        .catch((error) => {
+          toast(error.message, { });
+        });
     }
   },
   mounted() {

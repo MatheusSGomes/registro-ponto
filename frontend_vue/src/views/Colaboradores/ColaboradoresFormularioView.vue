@@ -92,6 +92,7 @@ import ColaboradoresDataService from '@/services/ColaboradoresDataService';
 import CargosDataService from '@/services/CargosDataService';
 import FuncoesDataService from '@/services/FuncoesDataService';
 import ColaboradoresHorariosTable from '@/components/colaboradores/ColaboradoresHorariosTable.vue';
+import { toast } from 'vue3-toastify';
 
 export default {
   name: 'ColaboradoresFormularioView',
@@ -128,7 +129,14 @@ export default {
         .getAll()
         .then(response => {
           this.cargos = response.data;
+        })
+        .catch((error) => {
+          toast(error.message, { });
+        })
+        .catch((error) => {
+          toast(error.message, { });
         });
+
     },
     preencheFuncoes() {
       FuncoesDataService
@@ -145,6 +153,9 @@ export default {
           .then(response => {
             this.colaborador = response.data;
             this.horarios = response.data.horarios;
+          })
+          .catch((error) => {
+            toast(error.message, { });
           });
       }
     },
@@ -176,6 +187,9 @@ export default {
         .then(() => {
           this.$router.push({ path: '/colaboradores' });
         })
+        .catch((error) => {
+          toast(error.message, { });
+        });
     },
     atualizarColaborador(data) {
       ColaboradoresDataService
@@ -183,6 +197,9 @@ export default {
         .then(() => {
           this.$router.push({ path: '/colaboradores' });
         })
+        .catch((error) => {
+          toast(error.message, { });
+        });
     },
   },
   mounted() {

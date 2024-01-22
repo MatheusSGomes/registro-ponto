@@ -36,6 +36,7 @@
 <script>
 import ModalExcluir from '../ModalExcluir.vue'
 import UsuariosDataService from '@/services/UsuariosDataService';
+import { toast } from 'vue3-toastify';
 
 export default {
   name: 'UsuariosTable',
@@ -54,6 +55,9 @@ export default {
         .then((response) => {
           this.usuarios = response.data;
         })
+        .catch((error) => {
+          toast(error.message, { });
+        });
     },
     excluirUsuario(usuario_id) {
       UsuariosDataService
@@ -61,6 +65,9 @@ export default {
         .then(() => {
           this.recuperarUsuarios();
         })
+        .catch((error) => {
+          toast(error.message, { });
+        });
     }
   },
   mounted() {

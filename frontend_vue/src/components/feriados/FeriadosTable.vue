@@ -34,6 +34,7 @@
 <script>
 import FeriadosDataService from '@/services/FeriadosDataService'
 import ModalExcluir from '../ModalExcluir.vue'
+import { toast } from 'vue3-toastify';
 
 export default {
   name: 'FeriadosTable',
@@ -50,6 +51,9 @@ export default {
       return FeriadosDataService.getAll()
         .then(response => {
           this.feriados = response.data;
+        })
+        .catch((error) => {
+          toast(error.message, { });
         });
     },
     excluirFeriado(feriado_id) {
@@ -58,6 +62,9 @@ export default {
         .then(() => {
           this.getAllFeriados();
         })
+        .catch((error) => {
+          toast(error.message, { });
+        });
     }
   },
   mounted() {

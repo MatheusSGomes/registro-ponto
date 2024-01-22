@@ -47,6 +47,7 @@
 import ColaboradoresDataService from '@/services/ColaboradoresDataService';
 import ControlePontoDataService from '@/services/ControlePontoDataService';
 import MapComponent from '@/components/MapComponent'
+import { toast } from 'vue3-toastify';
 
 export default {
   name: 'HomeView',
@@ -78,8 +79,9 @@ export default {
           this.showRegistrador = true;
           this.buscaPontoColaborador(1);
         })
-        .catch(() => {
+        .catch((error) => {
           this.showRegistrador = false;
+          toast(error.message, { });
         });
     },
     buscaPontoColaborador(colaborador_id) {
@@ -87,6 +89,9 @@ export default {
         .getByColaboradorId(colaborador_id)
         .then(response => {
           this.relogio_ponto = response.data;
+        })
+        .catch((error) => {
+          toast(error.message, { });
         });
     },
     registrarPonto(colaborador_id) {
@@ -99,6 +104,9 @@ export default {
         .registrarPonto(data)
         .then(response => {
           this.relogio_ponto.push(response.data)
+        })
+        .catch((error) => {
+          toast(error.message, { });
         });
     },
     recebeLocalizacao(localizacao) {

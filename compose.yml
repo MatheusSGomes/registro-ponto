@@ -6,18 +6,18 @@ services:
       context: .
       dockerfile: Dockerfile-backend
     ports:
-      - "8080:80"
+      - "8000:80"
 
   frontend:
     build:
       context: .
       dockerfile: Dockerfile-frontend
     ports:
-      - "4200:80"
+      - "8080:80"
 
-  db:
-    build:
-      context: .
-      dockerfile: Dockerfile-postgres
-    ports:
-      - "5432:5432"
+# Construção e execução dos containers:
+# docker build -t backend .
+# docker run -p 8000:80 backend
+
+# docker build -t frontend_vue .
+# docker run -p 8080:80 frontend_vue

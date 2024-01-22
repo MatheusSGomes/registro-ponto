@@ -1,7 +1,0 @@
-FROM postgres:latest
-
-ENV POSTGRES_DB=registroponto \
-    POSTGRES_USER=admin \
-    POSTGRES_PASSWORD=admin
-
-EXPOSE 5432

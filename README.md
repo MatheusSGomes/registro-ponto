@@ -52,11 +52,19 @@ __(Escreva aqui as instruções para que possamos corrigir sua prova, bem como q
 
 - Na funcionalidade do mapa utilizei uma biblioteca que busca a localização atual do usuário e adiciona latitude e longitude no banco de dados.
 
-
 ## Funcionalidades que não consegui implementar
 - Validação na página de registro de ponto. Quando comecei não havia ficado claro que essa seria uma página onde apenas usuários logados teriam permissão, no final do desenvolvimento percebi isso. Porém adicionei um campo para buscar pela matrícula e posteriormente registrar a entrada ou saída.
 
-## Libs e bibliotecas extras
-- Adicionei no frontend a biblioteca Leaflet para renderização dos mapas.
-- Adicionei no backend Pest para testes unitários e de feature, porém não consegui ter tempo de avançar.
+- No registro de ponto, por motivos de tempo, não consegui implementar a validação de que apenas usuário do tipo colaborador pode acessar a tela de registros. Também não consegui implementar as regras que garantem que o colaborador não tenha ultrapassado a jornada de trabalho, nem cumprido um período menor.
 
+## Libs e bibliotecas extras
+- No frontend:
+  - Adicionei no frontend a biblioteca Leaflet para renderização dos mapas.
+  - Para estilização utilizei o Tailwindcss, para consumo e padronização da resposta da API utilizei o Axios, para exibir mensagens de erro do backend utilizei o Vue Toastify.
+
+- No backend:
+  - Adicionei no backend Pest para testes unitários e de feature, porém não consegui ter tempo de avançar.
+
+## Pontos de melhoria
+- Foquei em tornar o sistema funcional, com um pouco mais de tempo eu trabalharia em uma UX mais aprimorada, padronizada, onde os botões e ações teriam ícones para facilitar a navegação do usuário e também em um esquema de cores.
+- Não consegui implementar TDD, acredito que se tivesse seguido a filosofia não teria conseguido finalizar o projeto funcionando, seria algo que com mais tempo faria a implementação tanto de testes de unidade quanto testes de integração.

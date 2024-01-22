@@ -97,7 +97,17 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if (to.meta.needsAuth) {
     const user = localStorage.getItem('acess_token');
-    if (!user) next('/login');
+    const isAdmin = localStorage.getItem('tipo_usuario') == 1;
+
+    // não logado
+    if (!user) {
+      next('/login');
+    }
+
+    // logado, não administrador
+    if (user && !isAdmin) {
+      next('/');
+    }
   }
   next();
 })

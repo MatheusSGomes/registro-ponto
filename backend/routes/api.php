@@ -9,6 +9,7 @@ use App\Http\Controllers\{AutenticacaoController,
     FeriadoController,
     FuncaoController,
     HorarioController,
+    TipoUsuarioController,
     UsuarioController};
 
 Route::post('login', [AutenticacaoController::class, 'login']);
@@ -19,7 +20,7 @@ Route::apiResource('feriados', FeriadoController::class);
 
 Route::apiResource('cargos', CargoController::class);
 Route::apiResource('funcoes', FuncaoController::class);
-Route::apiResource('tipousuario', FuncaoController::class);
+Route::apiResource('tipousuario', TipoUsuarioController::class);
 
 Route::get('horarios-colaborador/{colaborador_id}', [HorarioController::class, 'getHorariosColaborador']);
 

@@ -25,7 +25,7 @@ class AutenticacaoController extends Controller
             'message' => 'Login realizado com sucesso',
             'token' => auth()->user()->createToken("API_TOKEN")->plainTextToken,
             'token_type' => 'Bearer',
-            'type' => auth()->user()->type
+            'tipo_usuario' => auth()->user()->tipousuario_id
         ], 200);
     }
 }

@@ -16,7 +16,8 @@ return new class extends Migration
             $table->integer('colaborador_id');
             $table->date('data');
             $table->time('horario');
-            $table->string('localizacao')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
 
             $table->foreign('colaborador_id')
                 ->references('id')

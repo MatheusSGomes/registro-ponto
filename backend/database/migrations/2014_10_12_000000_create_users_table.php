@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Usuario;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -23,6 +25,13 @@ return new class extends Migration
 
             $table->foreign('tipousuario_id')->references('id')->on('tipo_usuarios');
         });
+
+        Usuario::create([
+            "usuario" => "admin",
+            "email" => "admin@email.com",
+            "tipousuario_id" => 1,
+            "password" => Hash::make("12345678"),
+        ]);
     }
 
     /**

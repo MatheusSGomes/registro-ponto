@@ -30,7 +30,8 @@ class ControlePontoController extends Controller
             "colaborador_id" => $request->colaborador_id,
             "data" => $data,
             "horario" => $horario,
-            "localizacao" => $request->localizacao,
+            "latitude" => $request->localizacao['latitude'],
+            "longitude" => $request->localizacao['longitude'],
         ]);
     }
 }

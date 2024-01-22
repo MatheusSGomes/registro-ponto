@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('colaboradores', function (Blueprint $table) {
             $table->id();
             $table->string('cpf')->unique();
-            $table->boolean('ativo')->default(true);
+            $table->boolean('ativo')->default(true)->nullable();
             $table->string('nome');
             $table->date('data_nascimento');
             $table->date('data_admissao');

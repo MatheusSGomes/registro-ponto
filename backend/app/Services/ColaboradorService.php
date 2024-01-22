@@ -14,7 +14,7 @@ class ColaboradorService
 
         $colaborador = Colaborador::create([
             "cpf" => $request->cpf,
-            "ativo" => $request->ativo,
+            "ativo" => ($request->ativo) ? true : false,
             "nome" => $request->nome,
             "data_nascimento" => $request->data_nascimento,
             "data_admissao" => $request->data_admissao,

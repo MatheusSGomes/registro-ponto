@@ -15,7 +15,8 @@ class ControlePonto extends Model
         'colaborador_id',
         'data',
         'horario',
-        'localizacao',
+        'latitude',
+        'longitude',
     ];
 
     public function colaborador(): HasOne

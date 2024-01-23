@@ -26,23 +26,21 @@
       <div class="mx-auto w-full max-w-80">
         <label class="block text-gray-700 text-sm font-bold my-2" for="cpf">Para registrar o ponto digite sua matricula: </label>
         <input v-model="colaborador.matricula" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="matricula" type="text" />
-        <button @click="buscaColaborador" class="bg-blue-500 hover:bg-blue-700 text-white font-bold my-4 py-2 px-4 rounded">Buscar Colaborador</button>
+        <button @click="buscaColaborador" class="bg-gray-500 hover:bg-gray-700 text-white font-bold my-4 py-2 px-4 rounded">Buscar Colaborador</button>
       </div>
 
-      <div class="mx-auto">
-        <table>
-          <thead>
-            <th v-for="ponto in relogio_ponto" :key="ponto.id"></th>
-          </thead>
-          <tbody>
-            <tr v-for="(ponto, index) in relogio_ponto" :key="ponto.id" >
-              <td v-if="index % 2 === 0" class="font-bold px-4 py-2">Entrada</td>
-              <td v-if="index % 2 !== 0" class="font-bold px-4 py-2">Saída</td>
-              <td class="border px-4 py-2">{{ ponto.horario }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table class="mx-auto">
+        <thead>
+          <th v-for="ponto in relogio_ponto" :key="ponto.id"></th>
+        </thead>
+        <tbody>
+          <tr v-for="(ponto, index) in relogio_ponto" :key="ponto.id" >
+            <td v-if="index % 2 === 0" class="font-bold px-4 py-2">Entrada</td>
+            <td v-if="index % 2 !== 0" class="font-bold px-4 py-2">Saída</td>
+            <td class="border px-4 py-2">{{ ponto.horario }}</td>
+          </tr>
+        </tbody>
+      </table>
 
       <button @click="registrarPonto(colaborador.id)" class="my-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Registrar

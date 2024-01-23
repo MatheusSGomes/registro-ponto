@@ -53,7 +53,7 @@ export default {
       LoginDataService
         .login(data)
         .then(response => {
-          localStorage.setItem('acess_token', response.data.token);
+          localStorage.setItem('access_token', response.data.token);
           localStorage.setItem('tipo_usuario', response.data.tipo_usuario);
           this.$router.push({ path: '/colaboradores' });
         }).catch((error) => {

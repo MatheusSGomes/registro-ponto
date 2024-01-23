@@ -45,12 +45,14 @@ class ColaboradorService
     {
         $horarios = $request->horarios;
 
-        unset($horarios['colaborador_id']);
-        unset($horarios['id']);
+        if ($horarios) {
+            unset($horarios['colaborador_id']);
+            unset($horarios['id']);
 
-        Horario::query()
-            ->where('colaborador_id', $colaborador_id)
-            ->update($horarios);
+            Horario::query()
+                ->where('colaborador_id', $colaborador_id)
+                ->update($horarios);
+        }
 
         $updateData = $request->all();
 

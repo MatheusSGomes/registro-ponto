@@ -1,5 +1,5 @@
 <template>
-  <table class="table-auto" @change="changeTable">
+  <table class="table-auto mx-auto" @change="changeTable">
     <thead>
       <tr>
         <th class="px-4 py-2"></th>
@@ -16,97 +16,97 @@
       <tr>
         <th class="px-4 py-2">Entrada</th>
         <td class="border px-4 py-2">
-          <input v-model="horarios.seg_p1_entrada" class="w-full" type="time" id="seg_p1_entrada" name="seg_p1_entrada" />
+          <input v-model="horarios.seg_p1_entrada" class="w-full bg-transparent" type="time" id="seg_p1_entrada" name="seg_p1_entrada" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.ter_p1_entrada" class="w-full" type="time" id="seg_p1_entrada" name="seg_p1_entrada" />
+          <input v-model="horarios.ter_p1_entrada" class="w-full bg-transparent" type="time" id="seg_p1_entrada" name="seg_p1_entrada" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.qua_p1_entrada" class="w-full" type="time" id="seg_p1_entrada" name="seg_p1_entrada" />
+          <input v-model="horarios.qua_p1_entrada" class="w-full bg-transparent" type="time" id="seg_p1_entrada" name="seg_p1_entrada" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.qui_p1_entrada" class="w-full" type="time" id="seg_p1_entrada" name="seg_p1_entrada" />
+          <input v-model="horarios.qui_p1_entrada" class="w-full bg-transparent" type="time" id="seg_p1_entrada" name="seg_p1_entrada" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.sex_p1_entrada" class="w-full" type="time" id="seg_p1_entrada" name="seg_p1_entrada" />
+          <input v-model="horarios.sex_p1_entrada" class="w-full bg-transparent" type="time" id="seg_p1_entrada" name="seg_p1_entrada" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.sab_p1_entrada" class="w-full" type="time" id="seg_p1_entrada" name="seg_p1_entrada" />
+          <input v-model="horarios.sab_p1_entrada" class="w-full bg-transparent" type="time" id="seg_p1_entrada" name="seg_p1_entrada" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.dom_p1_entrada" class="w-full" type="time" id="seg_p1_entrada" name="seg_p1_entrada" />
+          <input v-model="horarios.dom_p1_entrada" class="w-full bg-transparent" type="time" id="seg_p1_entrada" name="seg_p1_entrada" />
         </td>
       </tr>
       <tr>
         <th class="px-4 py-2">Saída</th>
         <td class="border px-4 py-2">
-          <input v-model="horarios.seg_p1_saida" class="w-full" type="time" id="seg_p1_saida" name="seg_p1_saida" />
+          <input v-model="horarios.seg_p1_saida" class="w-full bg-transparent" type="time" id="seg_p1_saida" name="seg_p1_saida" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.ter_p1_saida" class="w-full" type="time" id="ter_p1_saida" name="ter_p1_saida" />
+          <input v-model="horarios.ter_p1_saida" class="w-full bg-transparent" type="time" id="ter_p1_saida" name="ter_p1_saida" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.qua_p1_saida" class="w-full" type="time" id="qua_p1_saida" name="qua_p1_saida" />
+          <input v-model="horarios.qua_p1_saida" class="w-full bg-transparent" type="time" id="qua_p1_saida" name="qua_p1_saida" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.qui_p1_saida" class="w-full" type="time" id="qui_p1_saida" name="qui_p1_saida" />
+          <input v-model="horarios.qui_p1_saida" class="w-full bg-transparent" type="time" id="qui_p1_saida" name="qui_p1_saida" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.sex_p1_saida" class="w-full" type="time" id="sex_p1_saida" name="sex_p1_saida" />
+          <input v-model="horarios.sex_p1_saida" class="w-full bg-transparent" type="time" id="sex_p1_saida" name="sex_p1_saida" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.sab_p1_saida" class="w-full" type="time" id="sab_p1_saida" name="sab_p1_saida" />
+          <input v-model="horarios.sab_p1_saida" class="w-full bg-transparent" type="time" id="sab_p1_saida" name="sab_p1_saida" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.dom_p1_saida" class="w-full" type="time" id="dom_p1_saida" name="dom_p1_saida" />
+          <input v-model="horarios.dom_p1_saida" class="w-full bg-transparent" type="time" id="dom_p1_saida" name="dom_p1_saida" />
         </td>
       </tr>
       <tr>
         <th class="px-4 py-2">Entrada</th>
         <td class="border px-4 py-2">
-          <input v-model="horarios.seg_p2_entrada" class="w-full" type="time" id="seg_p2_entrada" name="seg_p2_entrada" />
+          <input v-model="horarios.seg_p2_entrada" class="w-full bg-transparent" type="time" id="seg_p2_entrada" name="seg_p2_entrada" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.ter_p2_entrada" class="w-full" type="time" id="ter_p2_entrada" name="ter_p2_entrada" />
+          <input v-model="horarios.ter_p2_entrada" class="w-full bg-transparent" type="time" id="ter_p2_entrada" name="ter_p2_entrada" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.qua_p2_entrada" class="w-full" type="time" id="qua_p2_entrada" name="qua_p2_entrada" />
+          <input v-model="horarios.qua_p2_entrada" class="w-full bg-transparent" type="time" id="qua_p2_entrada" name="qua_p2_entrada" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.qui_p2_entrada" class="w-full" type="time" id="qui_p2_entrada" name="qui_p2_entrada" />
+          <input v-model="horarios.qui_p2_entrada" class="w-full bg-transparent" type="time" id="qui_p2_entrada" name="qui_p2_entrada" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.sex_p2_entrada" class="w-full" type="time" id="sex_p2_entrada" name="sex_p2_entrada" />
+          <input v-model="horarios.sex_p2_entrada" class="w-full bg-transparent" type="time" id="sex_p2_entrada" name="sex_p2_entrada" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.sab_p2_entrada" class="w-full" type="time" id="sab_p2_entrada" name="sab_p2_entrada" />
+          <input v-model="horarios.sab_p2_entrada" class="w-full bg-transparent" type="time" id="sab_p2_entrada" name="sab_p2_entrada" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.dom_p2_entrada" class="w-full" type="time" id="dom_p2_entrada" name="dom_p2_entrada" />
+          <input v-model="horarios.dom_p2_entrada" class="w-full bg-transparent" type="time" id="dom_p2_entrada" name="dom_p2_entrada" />
         </td>
       </tr>
       <tr>
         <th class="px-4 py-2">Saída</th>
         <td class="border px-4 py-2">
-          <input v-model="horarios.seg_p2_saida" class="w-full" type="time" id="seg_p2_saida" name="seg_p2_saida" />
+          <input v-model="horarios.seg_p2_saida" class="w-full bg-transparent" type="time" id="seg_p2_saida" name="seg_p2_saida" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.ter_p2_saida" class="w-full" type="time" id="ter_p2_saida" name="ter_p2_saida" />
+          <input v-model="horarios.ter_p2_saida" class="w-full bg-transparent" type="time" id="ter_p2_saida" name="ter_p2_saida" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.qua_p2_saida" class="w-full" type="time" id="qua_p2_saida" name="qua_p2_saida" />
+          <input v-model="horarios.qua_p2_saida" class="w-full bg-transparent" type="time" id="qua_p2_saida" name="qua_p2_saida" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.qui_p2_saida" class="w-full" type="time" id="qui_p2_saida" name="qui_p2_saida" />
+          <input v-model="horarios.qui_p2_saida" class="w-full bg-transparent" type="time" id="qui_p2_saida" name="qui_p2_saida" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.sex_p2_saida" class="w-full" type="time" id="sex_p2_saida" name="sex_p2_saida" />
+          <input v-model="horarios.sex_p2_saida" class="w-full bg-transparent" type="time" id="sex_p2_saida" name="sex_p2_saida" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.sab_p2_saida" class="w-full" type="time" id="sab_p2_saida" name="sab_p2_saida" />
+          <input v-model="horarios.sab_p2_saida" class="w-full bg-transparent" type="time" id="sab_p2_saida" name="sab_p2_saida" />
         </td>
         <td class="border px-4 py-2">
-          <input v-model="horarios.dom_p2_saida" class="w-full" type="time" id="dom_p2_saida" name="dom_p2_saida" />
+          <input v-model="horarios.dom_p2_saida" class="w-full bg-transparent" type="time" id="dom_p2_saida" name="dom_p2_saida" />
         </td>
       </tr>
     </tbody>

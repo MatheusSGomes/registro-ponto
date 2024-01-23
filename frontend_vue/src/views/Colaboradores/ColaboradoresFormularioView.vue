@@ -9,7 +9,7 @@
       </h1>
 
       <form action="" @submit="submitForm">
-        <div class="grid gap-3 grid-cols-3">
+        <div class="grid gap-3 grid-cols-3 mb-7">
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="cpf">
               CPF
@@ -84,7 +84,7 @@
 
         <ColaboradoresHorariosTable :colaborador_id="id" @update-horarios="atualizaHorarios" />
 
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-5 rounded">
+        <button class="mt-7 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 my-5 rounded">
           Salvar
         </button>
       </form>

@@ -1,5 +1,5 @@
 <template>
-  <div class="mapa w-96 h-48 overflow-hidden">
+  <div class="mapa mx-auto w-9/12 h-64 overflow-hidden rounded-lg">
     <div id="map"></div>
   </div>
 </template>
@@ -51,12 +51,12 @@ export default {
 #map {
   width: 450px;
   height: 150px;
-  position: relative;
+  /* position: relative; */
 
 
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 
 </style>

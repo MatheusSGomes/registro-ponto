@@ -1,27 +1,35 @@
 <template>
-  <div class="">
-    <h1 class="text-4xl font-extrabold my-10">Registro de Ponto</h1>
+  <section class="bg-gray-100 rounded-3xl my-7 py-8 px-4">
+    <div class="mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+      <h1 class="mb-6 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl">Registro de Ponto</h1>
+      <p class="my-2 text-lg font-normal text-gray-500 lg:text-xl">
+        Data atual: <span class="font-bold">{{ data_atual }}</span>
+      </p>
+      <p class="mt-2 mb-10 text-lg font-normal text-gray-500 lg:text-xl">
+        Hora atual: <span class="font-bold">{{ hora_atual }}</span>
+      </p>
 
-    <h1 class="text-3xl font-extrabold mb-3">{{ data_atual }}</h1>
-    <h1 class="text-2xl font-extrabold mb-10">{{ hora_atual }}</h1>
+      <MapComponent @atualiza-localizacao="recebeLocalizacao" />
 
-    <MapComponent @atualiza-localizacao="recebeLocalizacao" />
-    <p class="mt-2">Latitude: {{ localizacao.latitude }}, Longitude: {{ localizacao.longitude }}</p>
+      <p class="mt-4 mb-10 text-md font-normal text-gray-500">
+        Latitude: <strong>{{ localizacao.latitude }}</strong>,
+        Longitude: <strong>{{ localizacao.longitude }}</strong>
+      </p>
 
-    <div class="my-10">
-      <label class="block text-gray-700 text-sm font-bold my-2" for="cpf">Para registrar o ponto digite sua matricula: </label>
-      <div class="flex gap-3">
+      <p class="mt-2 text-lg font-normal text-gray-500 lg:text-xl">
+        Colaborador: <span class="font-bold">{{ colaborador.nome }}</span>
+      </p>
+      <p class="mt-2 mb-10 text-lg font-normal text-gray-500 lg:text-xl">
+        Matricula: <span class="font-bold">{{ colaborador.id }}</span>
+      </p>
+
+      <div class="mx-auto w-full max-w-80">
+        <label class="block text-gray-700 text-sm font-bold my-2" for="cpf">Para registrar o ponto digite sua matricula: </label>
         <input v-model="colaborador.matricula" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="matricula" type="text" />
-        <button @click="buscaColaborador" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Buscar Colaborador</button>
+        <button @click="buscaColaborador" class="bg-blue-500 hover:bg-blue-700 text-white font-bold my-4 py-2 px-4 rounded">Buscar Colaborador</button>
       </div>
-    </div>
 
-    <div class="registrador" v-if="showRegistrador">
-      <div class="flex gap-5 my-10">
-        <p><strong>Colaborador: </strong>{{ colaborador.nome }}</p>
-        <p><strong>Matricula: </strong>{{ colaborador.id }}</p>
-      </div>
-      <div>
+      <div class="mx-auto">
         <table>
           <thead>
             <th v-for="ponto in relogio_ponto" :key="ponto.id"></th>
@@ -39,8 +47,9 @@
       <button @click="registrarPonto(colaborador.id)" class="my-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Registrar
       </button>
+
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -77,7 +86,7 @@ export default {
         .then(response => {
           this.colaborador = response.data;
           this.showRegistrador = true;
-          this.buscaPontoColaborador(1);
+          this.buscaPontoColaborador(response.data.id);
         })
         .catch((error) => {
           this.showRegistrador = false;

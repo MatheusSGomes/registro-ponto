@@ -32,7 +32,7 @@
          <div class="order-2 md:order-3 flex flex-wrap items-center justify-end mr-0 md:mr-4" id="nav-content">
             <div class="auth flex items-center w-full md:w-full">
               <button class="bg-transparent text-gray-800  p-2 rounded border border-gray-300 mr-4 hover:bg-gray-100 hover:text-gray-700">Logout</button>
-              <router-link class="bg-gray-600 text-white p-2 rounded hover:bg-gray-500 hover:text-gray-100" to="/login">Login</router-link>
+              <router-link class="bg-gray-600 text-white p-2 rounded hover:bg-gray-500 hover:text-gray-100" to="/">Login</router-link>
             </div>
          </div>
       </div>

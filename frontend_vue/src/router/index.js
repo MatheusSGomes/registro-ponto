@@ -4,7 +4,7 @@ import LoginView from '@/views/LoginView.vue';
 
 const routes = [
   {
-    path: '/login',
+    path: '/',
     name: 'login',
     component: LoginView,
     meta: { needsAuth: false }
@@ -13,7 +13,7 @@ const routes = [
     path: '/registro-ponto',
     name: 'registro',
     component: RegistroPontoView,
-    meta: { needsAuth: false },
+    meta: { needsAuth: true },
   },
   {
     path: '/colaboradores',
@@ -101,12 +101,12 @@ router.beforeEach((to, from, next) => {
 
     // não logado
     if (!user) {
-      next('/login');
+      next('/');
     }
 
     // logado, não administrador
     if (user && !isAdmin) {
-      next('/');
+      next('/colaboradores');
     }
   }
   next();

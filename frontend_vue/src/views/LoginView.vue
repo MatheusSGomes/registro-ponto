@@ -6,6 +6,8 @@
         Login
       </h1>
 
+      <p class="my-6 text-3xl font-normal text-gray-500">Registro de ponto</p>
+
       <div class="w-full max-w-xs mx-auto">
         <form class="bg-white shadow-md rounded-2xl px-8 pt-6 pb-8 mb-4" @submit.prevent="submitLogin">
           <div class="mb-4">

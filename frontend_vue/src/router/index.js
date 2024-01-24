@@ -1,19 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue';
+import RegistroPontoView from '../views/RegistroPontoView.vue';
 import LoginView from '@/views/LoginView.vue';
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView,
-    meta: { needsAuth: false },
-  },
   {
     path: '/login',
     name: 'login',
     component: LoginView,
     meta: { needsAuth: false }
+  },
+  {
+    path: '/registro-ponto',
+    name: 'registro',
+    component: RegistroPontoView,
+    meta: { needsAuth: false },
   },
   {
     path: '/colaboradores',

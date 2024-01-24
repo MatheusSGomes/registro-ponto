@@ -14,7 +14,7 @@
             <nav>
                <ul class="md:flex items-center justify-between text-base text-gray-600 pt-4 md:pt-0">
                   <li>
-                    <router-link class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2" to="/">Home</router-link>
+                    <router-link class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2" to="/registro-ponto">Registro ponto</router-link>
                   </li>
                   <li>
                     <router-link class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2" to="/colaboradores">Colaboradores</router-link>

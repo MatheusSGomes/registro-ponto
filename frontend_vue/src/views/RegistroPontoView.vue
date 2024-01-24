@@ -57,7 +57,7 @@ import MapComponent from '@/components/MapComponent'
 import { toast } from 'vue3-toastify';
 
 export default {
-  name: 'HomeView',
+  name: 'RegistroPontoView',
   components: {
     MapComponent
   },

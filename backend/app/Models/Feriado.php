@@ -9,4 +9,5 @@ class Feriado extends Model
 {
     use HasFactory;
     protected $fillable = ['data', 'descricao'];
+    protected $hidden = ['created_at', 'updated_at'];
 }

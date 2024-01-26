@@ -5,6 +5,9 @@ use App\Models\Feriado;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
+use function Pest\Laravel\put;
+
+// https://www.twilio.com/blog/unit-test-laravel-api-pest-framework
 
 // prepare
 // act
@@ -89,4 +92,25 @@ test('busca por feriado recém criado usando id', function () {
     $response = get("/api/feriados/{$feriado->id}");
 
     $response->assertStatus(200)->assertJson($response->json());
-})->uses(DatabaseTransactions::class)->only();
+})->uses(DatabaseTransactions::class);
+
+test('verifica se é possível atualizar um feriado', function () {
+    $data = now()->format('Y-m-d');
+    $feriado = Feriado::factory()->create([
+        'data' => $data,
+        'descricao' => 'Descrição de Teste',
+    ]);
+
+    $feriadoAtualizado = [
+        'data' => $data,
+        'descricao' => 'Feriado Atualizado',
+    ];
+
+    put("/api/feriados/{$feriado->id}", $feriadoAtualizado);
+    $response = get("/api/feriados/{$feriado->id}")->json();
+
+    expect($feriadoAtualizado['data'])->toBe($response['data']);
+    expect($feriadoAtualizado['descricao'])->toBe($response['descricao']);
+
+    expect($response)->toHaveKeys(['id', 'data', 'descricao']);
+});

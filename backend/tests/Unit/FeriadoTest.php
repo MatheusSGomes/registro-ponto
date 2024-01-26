@@ -52,14 +52,14 @@ test ('não é possível criar um feriado sem o campo data', function () {
         'data' => now(),
     ]);
     $response->assertStatus(500);
-});
+})->uses(DatabaseTransactions::class);
 
 test ('não é possível criar um feriado sem o campo descricao', function () {
     $response = post('/api/feriados', [
         'descricao' => 'Descrição de teste',
     ]);
     $response->assertServerError();
-});
+})->uses(DatabaseTransactions::class);
 
 test('feriado retorna corretamente', function () {
     // prepare
@@ -77,4 +77,16 @@ test('feriado retorna corretamente', function () {
         'data' => $data,
         'descricao' => 'Descrição do Feriado',
     ]);
-});
+})->uses(DatabaseTransactions::class);
+
+test('busca por feriado recém criado usando id', function () {
+    $data = now()->format('Y-m-d');
+    $feriado = Feriado::factory()->create([
+        'data' => $data,
+        'descricao' => 'Descrição de Teste',
+    ]);
+
+    $response = get("/api/feriados/{$feriado->id}");
+
+    $response->assertStatus(200)->assertJson($response->json());
+})->uses(DatabaseTransactions::class)->only();

@@ -3,6 +3,7 @@
 use App\Models\Colaborador;
 use App\Models\Feriado;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use function Pest\Laravel\delete;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 use function Pest\Laravel\put;
@@ -113,4 +114,15 @@ test('verifica se é possível atualizar um feriado', function () {
     expect($feriadoAtualizado['descricao'])->toBe($response['descricao']);
 
     expect($response)->toHaveKeys(['id', 'data', 'descricao']);
+});
+
+test('verifica se é possível apagar um feriado', function () {
+    $data = now()->format('Y-m-d');
+    $feriado = Feriado::factory()->create([
+        'data' => $data,
+        'descricao' => 'Descrição de Teste',
+    ]);
+
+    $response = delete("/api/feriados/{$feriado->id}");
+    $response->assertStatus(200);
 });

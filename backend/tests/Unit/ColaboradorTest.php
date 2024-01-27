@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Colaborador;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 beforeEach(function () {
@@ -29,15 +30,20 @@ test('verifica se o nome é string', function () {
         ->toBeString();
 });
 
-test('verifica se data_nascimento está no formato esperado (Y-m-d)', function () {});
+test('verifica se data_nascimento recebeu o cast para o formato: Y-m-d', function () {
+    $this->colaborador->data_nascimento = '01-12-2024';
 
-test('verifica se data_admissao está no formato esperado (Y-m-d)', function () {});
+    expect($this->colaborador->data_nascimento)
+        ->toBeInstanceOf(Carbon::class);
+})->only();
+
+test('verifica se data_admissao recebeu o cast para o formato: Y-m-d', function () {});
 
 test('verifica se cargo_id tem relacionamento com a tabela cargos', function () {});
 
 test('verifica se funcao_id tem relacionamento com a tabela funcoes', function () {});
 
-test('verifica se data_recisao está no formato esperado (Y-m-d)', function () {});
+test('verifica se data_recisao recebeu o cast para o formato: Y-m-d', function () {});
 
 test('verifica se usuario é cadastrado automaticamente ao criar um novo colaborador)', function () {});
 

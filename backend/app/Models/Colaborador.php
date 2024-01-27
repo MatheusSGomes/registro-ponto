@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -24,7 +25,8 @@ class Colaborador extends Model
     ];
     protected $hidden = ['created_at', 'updated_at'];
     protected $casts = [
-        'ativo' => 'boolean'
+        'ativo' => 'boolean',
+        'data_nascimento' => 'datetime:Y-m-d'
     ];
     //protected $with = ['horarios'];
 
@@ -39,4 +41,15 @@ class Colaborador extends Model
             $this->attributes['cpf'] = preg_replace('/\D/','${1}', $value);
         }
     }
+
+    //public function setDataNascimentoAttribute($value)
+    //{
+    //    if ($value) {
+    //        if ($value instanceof Carbon) {
+    //            $this->attributes['data_nascimento'] = $value->format('Y-m-d');
+    //        } else {
+    //            $this->attributes['data_nascimento'] = Carbon($value);
+    //        }
+    //    }
+    //}
 }

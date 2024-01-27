@@ -80,7 +80,7 @@ test ('verifica se é possível buscar por um usuário em específico recém cad
     expect($responseJsonGet)->toContain($responseJsonPost['usuario']);
     expect($responseJsonGet)->toContain($responseJsonPost['email']);
     expect($responseJsonGet)->toContain($responseJsonPost['tipousuario_id']);
-})->only();
+});
 
 test ('verifica se na buscar por um usuário não retorna dados hidden', function () {
     // prepare
@@ -98,11 +98,11 @@ test ('verifica se na buscar por um usuário não retorna dados hidden', functio
     $responseJsonGet = get("$this->urlBase/$idUser")->json();
 
     // assert
-    expect($responseJsonGet)->not->toContain('password');
-    expect($responseJsonGet)->not->toContain('remember_token');
-    expect($responseJsonGet)->not->toContain('created_at');
-    expect($responseJsonGet)->not->toContain('updated_at');
-    expect($responseJsonGet)->not->toContain('email_verified_at');
+    expect($responseJsonGet)->not->toHaveKey('password');
+    expect($responseJsonGet)->not->toHaveKey('remember_token');
+    expect($responseJsonGet)->not->toHaveKey('created_at');
+    expect($responseJsonGet)->not->toHaveKey('updated_at');
+    expect($responseJsonGet)->not->toHaveKey('email_verified_at');
 });
 
 //test ('', function () {});

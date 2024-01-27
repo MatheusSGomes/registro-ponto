@@ -6,6 +6,7 @@ use App\Models\Colaborador;
 use App\Models\Horario;
 use App\Services\ColaboradorService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Mockery\Exception;
 
 class ColaboradorController extends Controller
@@ -27,7 +28,7 @@ class ColaboradorController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->colaboradorService->createColaborador($request);
+        return $this->colaboradorService->createColaborador(Collection::make($request));
     }
 
     /**

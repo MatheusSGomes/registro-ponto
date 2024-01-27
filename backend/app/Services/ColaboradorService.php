@@ -8,25 +8,25 @@ use Illuminate\Http\Request;
 
 class ColaboradorService
 {
-    public function createColaborador($request)
+    public function createColaborador($colaboradorData)
     {
-        $usuario = $this->createUsuarioName($request->nome);
+        $usuario = $this->createUsuarioName($colaboradorData->get('nome'));
 
         $colaborador = Colaborador::create([
-            "cpf" => $request->cpf,
-            "ativo" => ($request->ativo) ? true : false,
-            "nome" => $request->nome,
-            "data_nascimento" => $request->data_nascimento,
-            "data_admissao" => $request->data_admissao,
-            "email" => $request->email,
-            "cargo_id" => $request->cargo_id,
-            "funcao_id" => $request->funcao_id,
-            "data_recisao" => $request->data_recisao,
+            "cpf" => $colaboradorData->get('cpf'),
+            "ativo" => ($colaboradorData->get('ativo')) ? true : false,
+            "nome" => $colaboradorData->get('nome'),
+            "data_nascimento" => $colaboradorData->get('data_nascimento'),
+            "data_admissao" => $colaboradorData->get('data_admissao'),
+            "email" => $colaboradorData->get('email'),
+            "cargo_id" => $colaboradorData->get('cargo_id'),
+            "funcao_id" => $colaboradorData->get('funcao_id'),
+            "data_recisao" => $colaboradorData->get('data_recisao'),
             "usuario" => $usuario,
         ]);
 
-        if ($request->horarios) {
-            Horario::create(['colaborador_id' => $colaborador->id, ...$request->horarios]);
+        if ($colaboradorData->get('horarios')) {
+            Horario::create(['colaborador_id' => $colaborador->id, ...$colaboradorData->get('horarios')]);
         }
 
         return $colaborador;

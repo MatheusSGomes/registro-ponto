@@ -15,6 +15,12 @@ return new class extends Migration
             $table->id();
             $table->integer('colaborador_id')->unique();
 
+            $table->foreign('colaborador_id')
+                ->references('id')
+                ->on('colaboradores')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
             $table->string('seg_p1_entrada')->nullable();
             $table->string('seg_p1_saida')->nullable();
             $table->string('seg_p2_entrada')->nullable();

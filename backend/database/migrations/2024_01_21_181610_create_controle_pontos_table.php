@@ -21,7 +21,9 @@ return new class extends Migration
 
             $table->foreign('colaborador_id')
                 ->references('id')
-                ->on('colaboradores');
+                ->on('colaboradores')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
         });
     }
 

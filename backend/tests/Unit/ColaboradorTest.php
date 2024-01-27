@@ -3,10 +3,13 @@
 use App\Models\Cargo;
 use App\Models\Colaborador;
 use App\Models\Funcao;
+use App\Services\ColaboradorService;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Collection;
 
 beforeEach(function () {
+    Colaborador::destroy(Colaborador::all()->pluck('id'));
     $this->colaborador = new Colaborador();
 });
 
@@ -60,7 +63,7 @@ test('verifica se funcao_id tem relacionamento com a tabela funcoes', function (
 
     expect((bool) $this->colaborador->funcao_id)
         ->toBeTrue($funcaoExists);
-})->only();
+});
 
 test('verifica se data_recisao recebeu o cast para o formato: Y-m-d', function () {
     $this->colaborador->data_recisao = '01-12-2024';
@@ -69,6 +72,26 @@ test('verifica se data_recisao recebeu o cast para o formato: Y-m-d', function (
         ->toBeInstanceOf(Carbon::class);
 });
 
-test('verifica se usuario é cadastrado automaticamente ao criar um novo colaborador)', function () {});
+test('verifica se usuario é cadastrado automaticamente ao criar um novo colaborador', function () {
+    $colaboradorService = new ColaboradorService();
+    $collection = Collection::make([
+        "cpf" => "123.123.123-25",
+        "ativo" => true,
+        "nome" => "Matheus",
+        "data_nascimento" => "01-01-1995",
+        "data_admissao" => "25-01-2024",
+        "email" => "matheus2@gmail.com",
+        "cargo_id" => 1,
+        "funcao_id" => 1,
+        "data_recisao" => "25-01-2026",
+        "usuario" => "matheus_gomes"
+    ]);
+    $colaborador = $colaboradorService->createColaborador($collection);
 
-afterEach(function () {});
+    expect($colaborador->usuario)
+        ->not->toBe($collection->get('usuario'));
+});
+
+afterEach(function () {
+    Colaborador::destroy(Colaborador::all()->pluck('id'));
+});

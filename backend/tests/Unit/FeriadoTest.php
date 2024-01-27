@@ -9,6 +9,7 @@ use function Pest\Laravel\post;
 use function Pest\Laravel\put;
 
 // https://www.twilio.com/blog/unit-test-laravel-api-pest-framework
+// https://laravel-news.com/testing-json-api-endpoints-with-pestphp
 
 // prepare
 // act

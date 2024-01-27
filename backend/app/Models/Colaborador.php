@@ -26,7 +26,8 @@ class Colaborador extends Model
     protected $hidden = ['created_at', 'updated_at'];
     protected $casts = [
         'ativo' => 'boolean',
-        'data_nascimento' => 'datetime:Y-m-d'
+        'data_nascimento' => 'datetime:Y-m-d',
+        'data_admissao' => 'datetime:Y-m-d',
     ];
     //protected $with = ['horarios'];
 

@@ -35,9 +35,14 @@ test('verifica se data_nascimento recebeu o cast para o formato: Y-m-d', functio
 
     expect($this->colaborador->data_nascimento)
         ->toBeInstanceOf(Carbon::class);
-})->only();
+});
 
-test('verifica se data_admissao recebeu o cast para o formato: Y-m-d', function () {});
+test('verifica se data_admissao recebeu o cast para o formato: Y-m-d', function () {
+    $this->colaborador->data_admissao = '01-12-2024';
+
+    expect($this->colaborador->data_admissao)
+        ->toBeInstanceOf(Carbon::class);
+})->only();
 
 test('verifica se cargo_id tem relacionamento com a tabela cargos', function () {});
 

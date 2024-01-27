@@ -60,16 +60,54 @@ test ('verifica se é possível cadastrar um usuário', function () {
     $response->assertCreated();
 });
 
-//test ('', function () {});
+test ('verifica se é possível buscar por um usuário em específico recém cadastrado', function () {
+    // prepare
+    $data = [
+        'usuario' => 'Usuário Teste',
+        'email' => "user-teste@email.com",
+        'tipousuario_id' => random_int(1, 2),
+        'password' => 'password'
+    ];
+
+    $responseJsonPost = post($this->urlBase, $data)->json();
+    $idUser = $responseJsonPost['id'];
+
+    // act
+    $responseJsonGet = get("$this->urlBase/$idUser")->json();
+
+    // assert
+    expect($responseJsonGet)->toContain($responseJsonPost['id']);
+    expect($responseJsonGet)->toContain($responseJsonPost['usuario']);
+    expect($responseJsonGet)->toContain($responseJsonPost['email']);
+    expect($responseJsonGet)->toContain($responseJsonPost['tipousuario_id']);
+})->only();
+
+test ('verifica se na buscar por um usuário não retorna dados hidden', function () {
+    // prepare
+    $data = [
+        'usuario' => 'Usuário Teste',
+        'email' => "user-teste@email.com",
+        'tipousuario_id' => random_int(1, 2),
+        'password' => 'password'
+    ];
+
+    $responseJsonPost = post($this->urlBase, $data)->json();
+    $idUser = $responseJsonPost['id'];
+
+    // act
+    $responseJsonGet = get("$this->urlBase/$idUser")->json();
+
+    // assert
+    expect($responseJsonGet)->not->toContain('password');
+    expect($responseJsonGet)->not->toContain('remember_token');
+    expect($responseJsonGet)->not->toContain('created_at');
+    expect($responseJsonGet)->not->toContain('updated_at');
+    expect($responseJsonGet)->not->toContain('email_verified_at');
+});
 
 //test ('', function () {});
 
 //test ('', function () {});
-
-//it('has usuariocontroller page', function () {
-//    $response = $this->get('/usuariocontroller');
-//    $response->assertStatus(200);
-//});
 
 //test('verifica se ao criar um usuário a senha está não está retornando', function () {});
 

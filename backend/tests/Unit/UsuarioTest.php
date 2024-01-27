@@ -1,6 +1,6 @@
 <?php
 
-// ATTRIBUTES:
+// TESTED ATTRIBUTES:
 // usuario
 // email
 // tipousuario_id
@@ -40,5 +40,3 @@ test('verifica se senha criada pode ser validada com check', function () {
     $this->usuario->password = 'password';
     expect(Hash::check('password', $this->usuario->password))->toBeTrue();
 });
-
-

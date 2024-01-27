@@ -42,13 +42,18 @@ test('verifica se data_admissao recebeu o cast para o formato: Y-m-d', function 
 
     expect($this->colaborador->data_admissao)
         ->toBeInstanceOf(Carbon::class);
-})->only();
+});
 
 test('verifica se cargo_id tem relacionamento com a tabela cargos', function () {});
 
 test('verifica se funcao_id tem relacionamento com a tabela funcoes', function () {});
 
-test('verifica se data_recisao recebeu o cast para o formato: Y-m-d', function () {});
+test('verifica se data_recisao recebeu o cast para o formato: Y-m-d', function () {
+    $this->colaborador->data_recisao = '01-12-2024';
+
+    expect($this->colaborador->data_recisao)
+        ->toBeInstanceOf(Carbon::class);
+})->only();
 
 test('verifica se usuario é cadastrado automaticamente ao criar um novo colaborador)', function () {});
 

@@ -28,6 +28,7 @@ class Colaborador extends Model
         'ativo' => 'boolean',
         'data_nascimento' => 'datetime:Y-m-d',
         'data_admissao' => 'datetime:Y-m-d',
+        'data_recisao' => 'datetime:Y-m-d',
     ];
     //protected $with = ['horarios'];
 

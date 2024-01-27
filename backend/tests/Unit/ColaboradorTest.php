@@ -3,9 +3,18 @@
 use App\Models\Colaborador;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-beforeEach(function () {});
+beforeEach(function () {
+    $this->colaborador = new Colaborador();
+});
 
-test('verifica se o cpf está sendo salvo sem máscara', function () {});
+test('verifica se o cpf está sendo salvo sem máscara', function () {
+    $this->colaborador->cpf = '123.123.123-23';
+    $valueReplaced = preg_replace('/\D/','${1}', '123.123.123-23');
+
+    expect($this->colaborador->cpf)
+        ->toEqual($valueReplaced)
+        ->toEqual('12312312323');
+});
 
 test('verifica se o ativo é boolean', function () {});
 

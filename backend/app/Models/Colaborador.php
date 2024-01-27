@@ -29,4 +29,11 @@ class Colaborador extends Model
     {
         return $this->hasOne(Horario::class);
     }
+
+    public function setCpfAttribute($value)
+    {
+        if ($value) {
+            $this->attributes['cpf'] = preg_replace('/\D/','${1}', $value);
+        }
+    }
 }

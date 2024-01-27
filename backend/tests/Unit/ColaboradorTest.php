@@ -16,7 +16,12 @@ test('verifica se o cpf está sendo salvo sem máscara', function () {
         ->toEqual('12312312323');
 });
 
-test('verifica se o ativo é boolean', function () {});
+test('verifica se o ativo é boolean', function () {
+    $this->colaborador->ativo = 'true';
+    expect($this->colaborador->ativo)
+        ->toBeTrue()
+        ->toBeBool();
+})->only();
 
 test('verifica se o nome é string', function () {});
 

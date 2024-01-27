@@ -23,6 +23,9 @@ class Colaborador extends Model
         'usuario',
     ];
     protected $hidden = ['created_at', 'updated_at'];
+    protected $casts = [
+        'ativo' => 'boolean'
+    ];
     //protected $with = ['horarios'];
 
     public function horarios(): HasOne

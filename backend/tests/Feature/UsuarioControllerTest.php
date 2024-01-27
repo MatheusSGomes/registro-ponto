@@ -1,15 +1,13 @@
 <?php
 
 // TESTED ROUTES:
-// GET      api/usuarios
-// POST     api/usuarios
-// GET      api/usuarios/{usuario}
 // PUT      api/usuarios/{usuario}
 // DELETE   api/usuarios/{usuario}
 
 use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Factories\Sequence;
-use function Pest\Laravel\{get, post};
+use Illuminate\Support\Facades\Hash;
+use function Pest\Laravel\{delete, get, post, put};
 
 beforeEach(function () {
     $this->urlBase = "/api/usuarios";
@@ -105,11 +103,56 @@ test ('verifica se na buscar por um usuário não retorna dados hidden', functio
     expect($responseJsonGet)->not->toHaveKey('email_verified_at');
 });
 
-//test ('', function () {});
+test ('verifica se é possível atualizar um registro recém criado', function () {
+    // prepare
+    $data = [
+        'usuario' => 'Usuário Teste',
+        'email' => "user-teste@email.com",
+        'tipousuario_id' => 1,
+        'password' => 'password'
+    ];
 
-//test ('', function () {});
+    $responseJsonPost = post("$this->urlBase", $data)->json();
+    $userId = $responseJsonPost['id'];
 
-//test('verifica se ao criar um usuário a senha está não está retornando', function () {});
+    $dataUpdated = [
+        'usuario' => 'Usuário Atualizado',
+        'email' => "user-atualizado@email.com",
+        'tipousuario_id' => 2,
+        'password' => 'password-atualizada'
+    ];
+
+    // act
+    put("$this->urlBase/$userId", $dataUpdated)->json();
+    $responseJsonGet = get("$this->urlBase/$userId", $dataUpdated)->json();
+
+    // assert
+    expect($responseJsonGet['id'])->toBe($userId);
+    expect($responseJsonGet['usuario'])->toBe('Usuário Atualizado');
+    expect($responseJsonGet['email'])->toBe('user-atualizado@email.com');
+    expect($responseJsonGet['tipousuario_id'])->toBe(2)->toBeInt();
+});
+
+test ('verifica se é possível apagar um usuário', function () {
+    // prepare
+    $data = [
+        'usuario' => 'Usuário Teste',
+        'email' => "user-teste@email.com",
+        'tipousuario_id' => 1,
+        'password' => 'password'
+    ];
+
+    $responseJsonPost = post("$this->urlBase", $data)->json();
+    $userId = $responseJsonPost['id'];
+
+    // act
+    $responseDeleteUser = delete("$this->urlBase/$userId")->json();
+
+    // assert
+    expect($responseDeleteUser)->toBe(1);
+});
+
+//test('verifica se é possível fazer login com uma senha atualizada', function () {});
 
 afterEach(function () {
     // Apaga todos os usuários após cada teste

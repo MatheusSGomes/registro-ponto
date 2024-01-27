@@ -1,0 +1,95 @@
+<?php
+
+use App\Models\Usuario;
+use Illuminate\Support\Facades\Auth;
+use function Pest\Laravel\post;
+
+// https://medium.com/@DCzajkowski/testing-laravel-authentication-flow-573ea0a96318
+
+beforeEach(function () {
+    Usuario::destroy(Usuario::all()->pluck('id'));
+});
+
+test('verifica se é possível fazer login', function () {
+    // prepare
+    Usuario::create([
+        'usuario' => "usuario-teste",
+        'email' => 'usuario@email.com',
+        'tipousuario_id' => 1,
+        'password' => 'password'
+    ]);
+
+    // act
+    $auth = Auth::attempt([
+        'usuario' => 'usuario-teste',
+        'password' => 'password',
+    ]);
+
+    // assert
+    expect($auth)->toBeTrue();
+});
+
+test('verifica se não é possível fazer login caso as credenciais estejam erradas', function () {
+    // prepare
+    Usuario::create([
+        'usuario' => "usuario-teste",
+        'email' => 'usuario@email.com',
+        'tipousuario_id' => 1,
+        'password' => 'password'
+    ]);
+
+    // act
+    $auth = Auth::attempt([
+        'usuario' => 'usuario-teste',
+        'password' => 'senha-errada',
+    ]);
+
+    // assert
+    expect($auth)->toBeFalse();
+});
+
+test('verifica se é possível fazer login pela rota /login e se o token é válido', function () {
+    // prepare
+    Usuario::create([
+        'usuario' => "usuario-teste",
+        'email' => 'usuario@email.com',
+        'tipousuario_id' => 1,
+        'password' => 'password'
+    ]);
+
+    // act
+    $credentials = [
+        'usuario' => 'usuario-teste',
+        'password' => 'password',
+    ];
+
+    post('/api/login', $credentials)->json();
+
+    // assert
+    expect(Auth::check())->toBeTrue();
+});
+
+test('verifica se não é possível fazer login ao passar credenciais inválidas', function () {
+    // prepare
+    Usuario::create([
+        'usuario' => "usuario-teste",
+        'email' => 'usuario@email.com',
+        'tipousuario_id' => 1,
+        'password' => 'password'
+    ]);
+
+    // act
+    $credentials = [
+        'usuario' => 'usuario-teste',
+        'password' => 'senha-errada',
+    ];
+
+    post('/api/login', $credentials)->json();
+
+    // assert
+    expect(Auth::check())->toBeFalse();
+});
+
+afterEach(function () {
+    Usuario::destroy(Usuario::all()->pluck('id'));
+});

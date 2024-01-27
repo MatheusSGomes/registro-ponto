@@ -1,6 +1,9 @@
 <?php
 
 // TESTED ROUTES:
+// GET      api/usuarios
+// POST     api/usuarios
+// GET      api/usuarios/{usuario}
 // PUT      api/usuarios/{usuario}
 // DELETE   api/usuarios/{usuario}
 
@@ -151,8 +154,6 @@ test ('verifica se é possível apagar um usuário', function () {
     // assert
     expect($responseDeleteUser)->toBe(1);
 });
-
-//test('verifica se é possível fazer login com uma senha atualizada', function () {});
 
 afterEach(function () {
     // Apaga todos os usuários após cada teste

@@ -3,22 +3,23 @@
 // TESTED ROUTES:
 // GET      api/usuarios
 // POST     api/usuarios
-// GET      api/usuarios/{feriado}
-// PUT      api/usuarios/{feriado}
-// DELETE   api/usuarios/{feriado}
+// GET      api/usuarios/{usuario}
+// PUT      api/usuarios/{usuario}
+// DELETE   api/usuarios/{usuario}
 
 use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Factories\Sequence;
-use function Pest\Laravel\get;
+use function Pest\Laravel\{get, post};
 
 beforeEach(function () {
     $this->urlBase = "/api/usuarios";
+
+    // Apaga todos os usuários antes dos testes
+    Usuario::destroy(Usuario::all()->pluck('id'));
 });
 
-test ('verifica se rota feriados retorna todos os feriados criados', function () {
+test ('verifica se rota feriados retorna todos os usuários criados', function () {
     // prepare
-    Usuario::destroy(Usuario::all()->pluck('id'));
-
     $usuarios = Usuario::factory()
         ->count(10)
         ->state(new Sequence(
@@ -35,19 +36,35 @@ test ('verifica se rota feriados retorna todos os feriados criados', function ()
     $response = get($this->urlBase);
 
     // assert
-    $response->assertJsonCount(10);
-})->only();
+    $response
+        ->assertJsonCount(10);
+
+    expect($usuarios->count())
+        ->toBe(10)
+        ->toBeInt();
+});
+
+test ('verifica se é possível cadastrar um usuário', function () {
+    // prepare
+    $data = [
+        'usuario' => 'Usuário Teste',
+        'email' => "user-teste@email.com",
+        'tipousuario_id' => random_int(1, 2),
+        'password' => 'password'
+    ];
+
+    // act
+    $response = post($this->urlBase, $data);
+
+    // assert
+    $response->assertCreated();
+});
 
 //test ('', function () {});
 
 //test ('', function () {});
 
 //test ('', function () {});
-
-//test ('', function () {});
-
-
-
 
 //it('has usuariocontroller page', function () {
 //    $response = $this->get('/usuariocontroller');
@@ -56,6 +73,7 @@ test ('verifica se rota feriados retorna todos os feriados criados', function ()
 
 //test('verifica se ao criar um usuário a senha está não está retornando', function () {});
 
-afterAll(function () {
-    dump('apaga todos os usuários');
+afterEach(function () {
+    // Apaga todos os usuários após cada teste
+    Usuario::destroy(Usuario::all()->pluck('id'));
 });

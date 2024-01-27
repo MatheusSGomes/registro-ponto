@@ -1,18 +1,18 @@
 <?php
 
 // TESTED ROUTES:
-// GET      api/feriados
-// POST     api/feriados
-// GET      api/feriados/{feriado}
-// PUT      api/feriados/{feriado}
-// DELETE   api/feriados/{feriado}
+// GET      api/usuarios
+// POST     api/usuarios
+// GET      api/usuarios/{feriado}
+// PUT      api/usuarios/{feriado}
+// DELETE   api/usuarios/{feriado}
 
 use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use function Pest\Laravel\get;
 
 beforeEach(function () {
-    $this->urlBase = "/api/feriados";
+    $this->urlBase = "/api/usuarios";
 });
 
 test ('verifica se rota feriados retorna todos os feriados criados', function () {
@@ -31,14 +31,11 @@ test ('verifica se rota feriados retorna todos os feriados criados', function ()
         ))
         ->create();
 
-    dd($usuarios->count());
-
     // act
     $response = get($this->urlBase);
-    dd($response);
 
     // assert
-    expect($response);
+    $response->assertJsonCount(10);
 })->only();
 
 //test ('', function () {});

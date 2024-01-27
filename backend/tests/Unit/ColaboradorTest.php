@@ -21,9 +21,13 @@ test('verifica se o ativo é boolean', function () {
     expect($this->colaborador->ativo)
         ->toBeTrue()
         ->toBeBool();
-})->only();
+});
 
-test('verifica se o nome é string', function () {});
+test('verifica se o nome é string', function () {
+    $this->colaborador->nome = 'Nome de Teste';
+    expect($this->colaborador->nome)
+        ->toBeString();
+});
 
 test('verifica se data_nascimento está no formato esperado (Y-m-d)', function () {});
 

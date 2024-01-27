@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Cargo;
 use App\Models\Colaborador;
+use App\Models\Funcao;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -44,16 +46,28 @@ test('verifica se data_admissao recebeu o cast para o formato: Y-m-d', function 
         ->toBeInstanceOf(Carbon::class);
 });
 
-test('verifica se cargo_id tem relacionamento com a tabela cargos', function () {});
+test('verifica se cargo_id tem relacionamento com a tabela cargos', function () {
+    $this->colaborador->cargo_id = 1;
+    $cargoExists = Cargo::find(1)->exists();
 
-test('verifica se funcao_id tem relacionamento com a tabela funcoes', function () {});
+    expect((bool) $this->colaborador->cargo_id)
+        ->toBeTrue($cargoExists);
+});
+
+test('verifica se funcao_id tem relacionamento com a tabela funcoes', function () {
+    $this->colaborador->funcao_id = 1;
+    $funcaoExists = Funcao::find(1)->exists();
+
+    expect((bool) $this->colaborador->funcao_id)
+        ->toBeTrue($funcaoExists);
+})->only();
 
 test('verifica se data_recisao recebeu o cast para o formato: Y-m-d', function () {
     $this->colaborador->data_recisao = '01-12-2024';
 
     expect($this->colaborador->data_recisao)
         ->toBeInstanceOf(Carbon::class);
-})->only();
+});
 
 test('verifica se usuario é cadastrado automaticamente ao criar um novo colaborador)', function () {});
 

@@ -9,6 +9,7 @@
 
 use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Factories\Sequence;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Hash;
 use function Pest\Laravel\{delete, get, post, put};
 

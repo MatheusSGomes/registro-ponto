@@ -1,73 +1,45 @@
-# Processo seletivo - Desenvolvedor Full Stack PHP Pleno
-Bem vindo, candidat@.
-
-Estamos felizes que você esteja participando do processo seletivo para a vaga de Desenvolvedor Full Stack PHP Pleno do Senai - Soluções Digitais.
-
-A prova deverá utilizar as seguintes tecnologias:
-
+# Registro de Ponto
 - Linguagem de programação PHP para o backend
-- Banco de dados PostgreSQL ou MySql
+- Framework Laravel no backend
+- Banco de dados PostgreSQL
 - Testes unitários.
+- Frontend em Vue JS
 - GIT para versionamento da aplicação.
 - Docker para deploy da aplicação.
-- A utilização ou não de frameworks ficará a critério do candidato, tanto para back-end (Laravel/Symfony) como para front-end (Vue/React/Livewire).
 
-Na etapa da entrevista deverá ser apresentado a aplicação em funcionamento.
+# Imagens do projeto
+## Tela de Registro de Ponto
+![](screen-0.png)
 
-- Instruções para a execução da prova será enviada por e-mail no horário definido em edital.
-- Todo código desenvolvido deverá ser commitado neste repositório, não sendo aceito o envio da prova por outros meios.
+## Tela de Login
+![](screen-1.png)
 
+## Tela com listagem de colaboradores
+![](screen-3.png)
 
-### Será avaliado
-- Facilidade no entendimento do código.
-- Complexidade ciclomática do código.
-- Divisão de responsabilidades das classes.
-- Reutilização de código.
-- Organização do projeto;
-- Qualidade dos testes unitários implementados.
-- Cobertura dos testes unitários.
-- Desenvolvimento e funcionamento dos requisitos propostos.
-- Utilização e configuração dos containers docker.
-- Criatividade e inovação na solução proposta.
-- Usabilidade do usuário.
+## Tela de inserção de colaborador
+![](screen-4.png)
 
-### Informações extras
-- Descreva ao final deste documento (Readme.md) o detalhamento de funcionalidades implementadas, sejam elas já descritas na modelagem e / ou extras.
-- Detalhar também as funcionalidades que não conseguiu implementar e o motivo.
-- Caso tenha adicionado novas libs ou frameworks, descreva quais foram e porque dessa agregação.
+## Tela de alteração de colaborador
+![](screen-10.png)
 
-__(Escreva aqui as instruções para que possamos corrigir sua prova, bem como qualquer outra observação sobre a prova que achar pertinente compartilhar)__
+## Modal exclusão de colaborador
+![](screen-11.png)
 
----
-# Minhas observações
+## Tela com listagem de usuários
+![](screen-5.png)
 
-## Detalhamento funcionalidades
+## Tela de inserção de usuário
+![](screen-4.png)
 
-- No módulo usuário consegui fazer toda a implementação com todas as regras tanto para adicionar, atualizar, lista e apagar usuário. Também consegui implementar a modal de exclusão onde outros módulos do sistema também a usam para excluir registros.
+## Tela de alteração de usuário
+![](screen-9.png)
 
-- No módulo de colaboradores consegui implementar todo o CRUD de todos os campos, os campos de "cargo" e "função" retornam seus objetos cadastrados no banco de dados, consegui implementar a geração automática do nome do usuário feita pelo backend, o campo no frontend é apenas de leitura. O ponto que não tive tempo de implementar foi a data de rescisão não ser anterior a data de admissão.
+## Tela com listagem de feriados
+![](screen-7.png)
 
-- Na funcionalidade de horários consegui implementar o cadastro das datas em uma tabela separada. Para facilitar criei um campo para cada data, assim não precisaria manipular essas datas nem no frontend nem no backend (por padrão não faria assim, mas por motivos de tempo achei que seria o mais adequado). Não tive tempo para implementar as validações de datas de entrada e saída de cada período do dia.
+## Tela de inserção de feriado
+![](screen-6.png)
 
-- No módulo feriados consegui implementar fazer a implementação completa da funciondalidade, a única exceção por motivos de tempo foi a regra de que o campo "data não deve aceitar datas já cadastradas" ao inserir um novo feriado.
-
-- No módulo de registro de ponto consegui adicionar as data atual e horário, porém por motivos de segurança no momento do cadastro da data e hora o backend é quem gera tais dados. Ao clicar no botão de registro o sistema adiciona a data e a hora no banco de dados, e na visualização no frontend ele retorna apenas os registros feitos no dia atual, e de forma alternada ele coloca "entrada" ou "saída".
-
-- Na funcionalidade do mapa utilizei uma biblioteca que busca a localização atual do usuário e adiciona latitude e longitude no banco de dados.
-
-## Funcionalidades que não consegui implementar
-- Validação na página de registro de ponto. Quando comecei não havia ficado claro que essa seria uma página onde apenas usuários logados teriam permissão, no final do desenvolvimento percebi isso. Porém adicionei um campo para buscar pela matrícula e posteriormente registrar a entrada ou saída.
-
-- No registro de ponto, por motivos de tempo, não consegui implementar a validação de que apenas usuário do tipo colaborador pode acessar a tela de registros. Também não consegui implementar as regras que garantem que o colaborador não tenha ultrapassado a jornada de trabalho, nem cumprido um período menor.
-
-## Libs e bibliotecas extras
-- No frontend:
-  - Adicionei no frontend a biblioteca Leaflet para renderização dos mapas.
-  - Para estilização utilizei o Tailwindcss, para consumo e padronização da resposta da API utilizei o Axios, para exibir mensagens de erro do backend utilizei o Vue Toastify.
-
-- No backend:
-  - Adicionei no backend Pest para testes unitários e de feature, porém não consegui ter tempo de avançar.
-
-## Pontos de melhoria
-- Foquei em tornar o sistema funcional, com um pouco mais de tempo eu trabalharia em uma UX mais aprimorada, padronizada, onde os botões e ações teriam ícones para facilitar a navegação do usuário e também em um esquema de cores.
-- Não consegui implementar TDD, acredito que se tivesse seguido a filosofia não teria conseguido finalizar o projeto funcionando, seria algo que com mais tempo faria a implementação tanto de testes de unidade quanto testes de integração.
+## Tela de alteração de feriado
+![](screen-8.png)

@@ -14,7 +14,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            //$table->id();
+            $table->uuid('id')->primary();
             $table->string('usuario');
             $table->string('email')->unique();
             $table->integer('tipousuario_id');
@@ -23,7 +24,11 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('tipousuario_id')->references('id')->on('tipo_usuarios');
+            $table->foreign('tipousuario_id')
+                ->references('id')
+                ->on('tipo_usuarios')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
         });
 
         Usuario::create([

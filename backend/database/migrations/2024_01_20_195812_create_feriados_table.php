@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('feriados', function (Blueprint $table) {
-            $table->id();
+            //$table->id();
+            $table->uuid('id')->primary();
             $table->date('data');
             $table->string('descricao');
             $table->timestamps();

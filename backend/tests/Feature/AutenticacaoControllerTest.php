@@ -90,6 +90,25 @@ test('verifica se não é possível fazer login ao passar credenciais inválidas
     expect(Auth::check())->toBeFalse();
 });
 
+test('verifica se é possível fazer login via POST', function () {
+    // prepare
+    Usuario::create([
+        'usuario' => "usuario-teste",
+        'email' => 'usuario@email.com',
+        'tipousuario_id' => 1,
+        'password' => 'password'
+    ]);
+
+    // act
+    $response = post('/api/login', [
+        "usuario" => 'usuario-teste',
+        "password" => 'password'
+    ]);
+
+    // assert
+    $response->assertOk();
+});
+
 afterEach(function () {
     Usuario::destroy(Usuario::all()->pluck('id'));
 });

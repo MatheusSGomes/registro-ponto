@@ -6,6 +6,7 @@
 - Frontend em Vue JS
 - GIT para versionamento da aplicação.
 - Docker para deploy da aplicação.
+- Implementação UUID
 
 # Imagens do projeto
 ## Tela de Registro de Ponto

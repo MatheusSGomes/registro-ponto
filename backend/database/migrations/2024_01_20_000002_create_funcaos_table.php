@@ -13,15 +13,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('funcoes', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('titulo');
         });
 
-        Funcao::insert([
-            [ "titulo" => "Funcao 1" ],
-            [ "titulo" => "Funcao 2" ],
-            [ "titulo" => "Funcao 3" ],
-        ]);
+        Funcao::create([ "titulo" => "Funcao 1" ]);
+        Funcao::create([ "titulo" => "Funcao 2" ]);
+        Funcao::create([ "titulo" => "Funcao 3" ]);
     }
 
     /**

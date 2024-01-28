@@ -36,9 +36,9 @@ class ColaboradorService
     {
         $usuarioLowerCase = strtolower($usuario);
         $underlineUsuario = str_replace(' ', '_', $usuarioLowerCase);
-        $colaborador = Colaborador::all()->last()?->id;
+        $colaborador = Colaborador::count() + 1;
 
-        return $underlineUsuario . $colaborador + 1;
+        return $underlineUsuario . $colaborador;
     }
 
     public function updateColaborador(Request $request, int $colaborador_id)

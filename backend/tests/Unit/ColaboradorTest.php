@@ -11,6 +11,9 @@ use Illuminate\Support\Collection;
 beforeEach(function () {
     Colaborador::destroy(Colaborador::all()->pluck('id'));
     $this->colaborador = new Colaborador();
+
+    $this->funcao_id = Funcao::all()->pluck('id')->random();
+    $this->cargo_id = Cargo::all()->pluck('id')->random();
 });
 
 test('verifica se o cpf está sendo salvo sem máscara', function () {
@@ -50,19 +53,15 @@ test('verifica se data_admissao recebeu o cast para o formato: Y-m-d', function 
 });
 
 test('verifica se cargo_id tem relacionamento com a tabela cargos', function () {
-    $this->colaborador->cargo_id = 1;
-    $cargoExists = Cargo::find(1)->exists();
-
+    $this->colaborador->cargo_id = $this->cargo_id;
     expect((bool) $this->colaborador->cargo_id)
-        ->toBeTrue($cargoExists);
+        ->toBeTrue($this->cargo_id);
 });
 
 test('verifica se funcao_id tem relacionamento com a tabela funcoes', function () {
-    $this->colaborador->funcao_id = 1;
-    $funcaoExists = Funcao::find(1)->exists();
-
+    $this->colaborador->funcao_id = $this->funcao_id;
     expect((bool) $this->colaborador->funcao_id)
-        ->toBeTrue($funcaoExists);
+        ->toBeTrue($this->funcao_id);
 });
 
 test('verifica se data_recisao recebeu o cast para o formato: Y-m-d', function () {

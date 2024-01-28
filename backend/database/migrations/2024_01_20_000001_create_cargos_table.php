@@ -13,15 +13,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cargos', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('titulo');
         });
 
-        Cargo::insert([
-            [ "titulo" => "Cargo 1" ],
-            [ "titulo" => "Cargo 2" ],
-            [ "titulo" => "Cargo 3" ],
-        ]);
+        Cargo::create([ "titulo" => "Cargo 1" ]);
+        Cargo::create([ "titulo" => "Cargo 2" ]);
+        Cargo::create([ "titulo" => "Cargo 3" ]);
     }
 
     /**

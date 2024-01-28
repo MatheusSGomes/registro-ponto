@@ -7,6 +7,7 @@
 // PUT      api/usuarios/{usuario}
 // DELETE   api/usuarios/{usuario}
 
+use App\Models\TipoUsuario;
 use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -18,6 +19,9 @@ beforeEach(function () {
 
     // Apaga todos os usuários antes dos testes
     Usuario::destroy(Usuario::all()->pluck('id'));
+
+    // Recupera tipos de usuário aleatório
+    $this->tipousuario_id = TipoUsuario::all()->pluck('id')->random();
 });
 
 test ('verifica se rota feriados retorna todos os usuários criados', function () {
@@ -28,7 +32,7 @@ test ('verifica se rota feriados retorna todos os usuários criados', function (
             fn (Sequence $sequence) => [
                 'usuario' => 'Usuário ' . $sequence->index,
                 'email' => "user{$sequence->index}@email.com",
-                'tipousuario_id' => random_int(1, 2),
+                'tipousuario_id' => $this->tipousuario_id,
                 'password' => 'password'
             ]
         ))
@@ -51,7 +55,7 @@ test ('verifica se é possível cadastrar um usuário', function () {
     $data = [
         'usuario' => 'Usuário Teste',
         'email' => "user-teste@email.com",
-        'tipousuario_id' => random_int(1, 2),
+        'tipousuario_id' => $this->tipousuario_id,
         'password' => 'password'
     ];
 
@@ -67,7 +71,7 @@ test ('verifica se é possível buscar por um usuário em específico recém cad
     $data = [
         'usuario' => 'Usuário Teste',
         'email' => "user-teste@email.com",
-        'tipousuario_id' => random_int(1, 2),
+        'tipousuario_id' => $this->tipousuario_id,
         'password' => 'password'
     ];
 
@@ -89,7 +93,7 @@ test ('verifica se na buscar por um usuário não retorna dados hidden', functio
     $data = [
         'usuario' => 'Usuário Teste',
         'email' => "user-teste@email.com",
-        'tipousuario_id' => random_int(1, 2),
+        'tipousuario_id' => $this->tipousuario_id,
         'password' => 'password'
     ];
 
@@ -112,7 +116,7 @@ test ('verifica se é possível atualizar um registro recém criado', function (
     $data = [
         'usuario' => 'Usuário Teste',
         'email' => "user-teste@email.com",
-        'tipousuario_id' => 1,
+        'tipousuario_id' => $this->tipousuario_id,
         'password' => 'password'
     ];
 
@@ -122,7 +126,7 @@ test ('verifica se é possível atualizar um registro recém criado', function (
     $dataUpdated = [
         'usuario' => 'Usuário Atualizado',
         'email' => "user-atualizado@email.com",
-        'tipousuario_id' => 2,
+        'tipousuario_id' => $this->tipousuario_id,
         'password' => 'password-atualizada'
     ];
 
@@ -134,7 +138,7 @@ test ('verifica se é possível atualizar um registro recém criado', function (
     expect($responseJsonGet['id'])->toBe($userId);
     expect($responseJsonGet['usuario'])->toBe('Usuário Atualizado');
     expect($responseJsonGet['email'])->toBe('user-atualizado@email.com');
-    expect($responseJsonGet['tipousuario_id'])->toBe(2)->toBeInt();
+    expect($responseJsonGet['tipousuario_id'])->toBe($this->tipousuario_id);
 });
 
 test ('verifica se é possível apagar um usuário', function () {
@@ -142,7 +146,7 @@ test ('verifica se é possível apagar um usuário', function () {
     $data = [
         'usuario' => 'Usuário Teste',
         'email' => "user-teste@email.com",
-        'tipousuario_id' => 1,
+        'tipousuario_id' => $this->tipousuario_id,
         'password' => 'password'
     ];
 

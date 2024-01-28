@@ -12,14 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('horarios', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->foreignUuid('colaborador_id')
                 ->references('id')
                 ->on('colaboradores')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate()
                 ->unique();
-
             $table->string('seg_p1_entrada')->nullable();
             $table->string('seg_p1_saida')->nullable();
             $table->string('seg_p2_entrada')->nullable();

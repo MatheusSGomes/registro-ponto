@@ -10,7 +10,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
 class ControlePontoController extends Controller
 {
-    public function getRegistrosPonto(int $colaborador_id)
+    public function getRegistrosPonto(string $colaborador_id)
     {
         $data = Carbon::now()->format('d-m-Y');
 

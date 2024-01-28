@@ -34,7 +34,7 @@ class ColaboradorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Colaborador $colaborador, int $colaborador_id)
+    public function show(Colaborador $colaborador, string $colaborador_id)
     {
         return $colaborador->find($colaborador_id);
     }
@@ -42,7 +42,7 @@ class ColaboradorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $colaborador_id)
+    public function update(Request $request, string $colaborador_id)
     {
         return $this->colaboradorService->updateColaborador($request, $colaborador_id);
     }
@@ -50,7 +50,7 @@ class ColaboradorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Colaborador $colaborador, int $colaborador_id)
+    public function destroy(Colaborador $colaborador, string $colaborador_id)
     {
         return $colaborador->find($colaborador_id)->delete();
     }

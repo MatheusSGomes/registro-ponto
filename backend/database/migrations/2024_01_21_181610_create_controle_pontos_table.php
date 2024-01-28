@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('controle_pontos', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
 
             $table->foreignUuid('colaborador_id')
                 ->references('id')

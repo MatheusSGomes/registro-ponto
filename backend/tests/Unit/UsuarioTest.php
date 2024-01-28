@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Hash;
 
 beforeEach(function () {
     $this->usuario = new Usuario();
+
+    // Recupera tipos de usuário aleatório
+    $this->tipousuario_id = TipoUsuario::all()->pluck('id')->random();
 });
 
 test('verifica se atributo usuário é do tipo string', function () {
@@ -25,10 +28,10 @@ test('verifica se o atributo email é do tipo string', function () {
 });
 
 test('verifica se tipo usuário é int e pertence a tabela tipousuarios', function () {
-    $this->usuario->tipousuario_id = '1';
+    $this->usuario->tipousuario_id = $this->tipousuario_id;
     $tipoUsuario = TipoUsuario::find($this->usuario->tipousuario_id);
     expect($tipoUsuario->exists())->toBeTrue();
-    expect($tipoUsuario->id)->toBe(1)->toBeInt();
+    expect($tipoUsuario->id)->toBe($this->tipousuario_id)->toBeUuid();
 });
 
 test('verifica se cast para hash da senha é realizado', function () {

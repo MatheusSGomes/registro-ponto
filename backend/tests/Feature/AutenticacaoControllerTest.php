@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\TipoUsuario;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use function Pest\Laravel\post;
@@ -8,6 +9,9 @@ use function Pest\Laravel\post;
 
 beforeEach(function () {
     Usuario::destroy(Usuario::all()->pluck('id'));
+
+    // Recupera tipos de usuário aleatório
+    $this->tipousuario_id = TipoUsuario::all()->pluck('id')->random();
 });
 
 test('verifica se é possível fazer login', function () {
@@ -15,7 +19,7 @@ test('verifica se é possível fazer login', function () {
     Usuario::create([
         'usuario' => "usuario-teste",
         'email' => 'usuario@email.com',
-        'tipousuario_id' => 1,
+        'tipousuario_id' => $this->tipousuario_id,
         'password' => 'password'
     ]);
 
@@ -34,7 +38,7 @@ test('verifica se não é possível fazer login caso as credenciais estejam erra
     Usuario::create([
         'usuario' => "usuario-teste",
         'email' => 'usuario@email.com',
-        'tipousuario_id' => 1,
+        'tipousuario_id' => $this->tipousuario_id,
         'password' => 'password'
     ]);
 
@@ -53,7 +57,7 @@ test('verifica se é possível fazer login pela rota /login e se o token é vál
     Usuario::create([
         'usuario' => "usuario-teste",
         'email' => 'usuario@email.com',
-        'tipousuario_id' => 1,
+        'tipousuario_id' => $this->tipousuario_id,
         'password' => 'password'
     ]);
 
@@ -74,7 +78,7 @@ test('verifica se não é possível fazer login ao passar credenciais inválidas
     Usuario::create([
         'usuario' => "usuario-teste",
         'email' => 'usuario@email.com',
-        'tipousuario_id' => 1,
+        'tipousuario_id' => $this->tipousuario_id,
         'password' => 'password'
     ]);
 
@@ -95,7 +99,7 @@ test('verifica se é possível fazer login via POST', function () {
     Usuario::create([
         'usuario' => "usuario-teste",
         'email' => 'usuario@email.com',
-        'tipousuario_id' => 1,
+        'tipousuario_id' => $this->tipousuario_id,
         'password' => 'password'
     ]);
 

@@ -13,14 +13,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tipo_usuarios', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('titulo');
         });
 
-        TipoUsuario::insert([
-            [ "titulo" => "Administrador" ],
-            [ "titulo" => "Colaborador" ],
-        ]);
+        TipoUsuario::create([ "titulo" => "Administrador" ]);
+        TipoUsuario::create([ "titulo" => "Colaborador" ]);
     }
 
     /**

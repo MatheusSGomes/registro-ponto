@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('colaboradores', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('cpf')->unique();
             $table->boolean('ativo')->default(true)->nullable();
             $table->string('nome');

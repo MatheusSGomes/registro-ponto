@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('controle_pontos', function (Blueprint $table) {
             $table->id();
-            $table->integer('colaborador_id');
-            $table->date('data');
-            $table->time('horario');
-            $table->string('latitude')->nullable();
-            $table->string('longitude')->nullable();
 
-            $table->foreign('colaborador_id')
+            $table->foreignUuid('colaborador_id')
                 ->references('id')
                 ->on('colaboradores')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+
+            $table->date('data');
+            $table->time('horario');
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
         });
     }
 

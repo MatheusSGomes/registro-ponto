@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
-            $table->integer('colaborador_id')->unique();
-
-            $table->foreign('colaborador_id')
+            $table->foreignUuid('colaborador_id')
                 ->references('id')
                 ->on('colaboradores')
                 ->cascadeOnDelete()
-                ->cascadeOnUpdate();
+                ->cascadeOnUpdate()
+                ->unique();
 
             $table->string('seg_p1_entrada')->nullable();
             $table->string('seg_p1_saida')->nullable();
